@@ -3,7 +3,27 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Code2, Cpu, Terminal } from "lucide-react";
 
+const typewriterVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const letterVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0
+  }
+};
+
 export function Hero() {
+  const fullStackText = "Full Stack Developer";
+
   return (
     <section className="min-h-screen relative overflow-hidden bg-gradient-to-b from-background to-background/80">
       {/* Animated background elements */}
@@ -41,32 +61,64 @@ export function Hero() {
           >
             <div className="inline-block">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
+                variants={typewriterVariants}
+                initial="hidden"
+                animate="visible"
                 className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 inline-flex items-center gap-2"
               >
                 <Code2 className="w-4 h-4" />
-                <span className="text-sm font-medium">Full Stack Developer</span>
+                <div className="overflow-hidden">
+                  {fullStackText.split("").map((char, index) => (
+                    <motion.span
+                      key={index}
+                      variants={letterVariants}
+                      className="inline-block"
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </div>
               </motion.div>
             </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-4xl md:text-6xl font-bold leading-tight"
-            >
-              Mechanical Engineer 
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/50">
+            <motion.div className="space-y-2">
+              <motion.h1
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 1.5 }}
+                className="text-4xl md:text-6xl font-bold leading-tight"
+              >
+                Mechanical Engineer
+              </motion.h1>
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ 
+                  opacity: 1, 
+                  y: 0,
+                  background: [
+                    "linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)) 100%)",
+                    "linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)/50%) 100%)",
+                  ]
+                }}
+                transition={{ 
+                  duration: 1,
+                  delay: 2,
+                  background: {
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                  }
+                }}
+                className="block text-4xl md:text-6xl font-bold text-transparent bg-clip-text"
+              >
                 Passionate About Tech
-              </span>
-            </motion.h1>
+              </motion.span>
+            </motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
+              transition={{ delay: 2.5, duration: 0.5 }}
               className="text-xl text-muted-foreground max-w-lg"
             >
               Bridging the gap between mechanical systems and software solutions. Expertise in DSA and full-stack development.
@@ -75,7 +127,7 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
+              transition={{ delay: 3, duration: 0.5 }}
               className="flex flex-wrap gap-4"
             >
               <Button size="lg" className="gap-2 text-lg" asChild>
