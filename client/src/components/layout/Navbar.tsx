@@ -9,7 +9,7 @@ export function Navbar() {
         <Link href="/">
           <a className="text-xl font-bold">Portfolio</a>
         </Link>
-        
+
         <div className="flex items-center gap-6">
           <div className="hidden md:flex gap-6">
             <Link href="#about">
@@ -18,6 +18,9 @@ export function Navbar() {
             <Link href="#skills">
               <a className="hover:text-primary transition-colors">Skills</a>
             </Link>
+            <Link href="#dsa">
+              <a className="hover:text-primary transition-colors">DSA</a>
+            </Link>
             <Link href="#projects">
               <a className="hover:text-primary transition-colors">Projects</a>
             </Link>
@@ -25,7 +28,7 @@ export function Navbar() {
               <a className="hover:text-primary transition-colors">Contact</a>
             </Link>
           </div>
-          
+
           <div className="flex items-center gap-4">
             <Button variant="outline" asChild>
               <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
