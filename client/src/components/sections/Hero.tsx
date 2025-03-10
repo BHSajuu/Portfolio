@@ -4,26 +4,29 @@ import { Link } from "wouter";
 import { Code2, Cpu, Terminal } from "lucide-react";
 
 const typewriterVariants = {
-  hidden: { opacity: 0 },
+  hidden: { width: 0 },
   visible: {
-    opacity: 1,
+    width: "100%",
     transition: {
-      staggerChildren: 0.1
+      duration: 1,
+      ease: "easeOut",
+      delay: 0.5
     }
   }
 };
 
-const letterVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0
+const cursorVariants = {
+  blinking: {
+    opacity: [0, 0, 1, 1],
+    transition: {
+      duration: 1,
+      repeat: Infinity,
+      repeatDelay: 0
+    }
   }
 };
 
 export function Hero() {
-  const fullStackText = "Full Stack Developer";
-
   return (
     <section className="min-h-screen relative overflow-hidden bg-gradient-to-b from-background to-background/80">
       {/* Animated background elements */}
@@ -59,66 +62,96 @@ export function Hero() {
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
+            {/* Full Stack Developer with typewriter effect */}
             <div className="inline-block">
-              <motion.div
-                variants={typewriterVariants}
-                initial="hidden"
-                animate="visible"
-                className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 inline-flex items-center gap-2"
-              >
+              <div className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 inline-flex items-center gap-2">
                 <Code2 className="w-4 h-4" />
-                <div className="overflow-hidden">
-                  {fullStackText.split("").map((char, index) => (
-                    <motion.span
-                      key={index}
-                      variants={letterVariants}
-                      className="inline-block"
-                    >
-                      {char}
-                    </motion.span>
-                  ))}
+                <div className="relative">
+                  <motion.div
+                    variants={typewriterVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="overflow-hidden whitespace-nowrap"
+                  >
+                    Full Stack Developer
+                  </motion.div>
+                  <motion.div
+                    variants={cursorVariants}
+                    animate="blinking"
+                    className="absolute right-[-4px] top-0 w-[2px] h-full bg-primary"
+                  />
                 </div>
-              </motion.div>
+              </div>
             </div>
 
-            <motion.div className="space-y-2">
+            <div className="space-y-2">
+              {/* Mechanical Engineer with reveal effect */}
               <motion.h1
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 1.5 }}
-                className="text-4xl md:text-6xl font-bold leading-tight"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.8,
+                  delay: 1.5,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                className="text-4xl md:text-6xl font-bold leading-tight relative overflow-hidden"
               >
-                Mechanical Engineer
+                <motion.div
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.5 }}
+                >
+                  Mechanical Engineer
+                </motion.div>
+                <motion.div
+                  initial={{ x: "-100%" }}
+                  animate={{ x: "100%" }}
+                  transition={{ duration: 1, delay: 1.5 }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent"
+                />
               </motion.h1>
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
+
+              {/* Passionate About Tech with floating effect */}
+              <motion.div
+                initial={{ opacity: 0 }}
                 animate={{ 
-                  opacity: 1, 
-                  y: 0,
-                  background: [
-                    "linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)) 100%)",
-                    "linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)/50%) 100%)",
+                  opacity: 1,
+                  y: [0, -8, 0],
+                  filter: [
+                    "drop-shadow(0 0 0px hsl(var(--primary)))",
+                    "drop-shadow(0 0 10px hsl(var(--primary)))",
+                    "drop-shadow(0 0 0px hsl(var(--primary)))"
                   ]
                 }}
                 transition={{ 
-                  duration: 1,
-                  delay: 2,
-                  background: {
+                  y: {
                     duration: 2,
                     repeat: Infinity,
-                    repeatType: "reverse"
+                    ease: "easeInOut"
+                  },
+                  filter: {
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  },
+                  opacity: {
+                    duration: 0.5,
+                    delay: 2.3
                   }
                 }}
-                className="block text-4xl md:text-6xl font-bold text-transparent bg-clip-text"
+                className="block text-4xl md:text-6xl font-bold"
               >
-                Passionate About Tech
-              </motion.span>
-            </motion.div>
+                <span className="bg-gradient-to-r from-primary to-primary/50 text-transparent bg-clip-text">
+                  Passionate About Tech
+                </span>
+              </motion.div>
+            </div>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2.5, duration: 0.5 }}
+              transition={{ delay: 3, duration: 0.5 }}
               className="text-xl text-muted-foreground max-w-lg"
             >
               Bridging the gap between mechanical systems and software solutions. Expertise in DSA and full-stack development.
@@ -127,7 +160,7 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 3, duration: 0.5 }}
+              transition={{ delay: 3.5, duration: 0.5 }}
               className="flex flex-wrap gap-4"
             >
               <Button size="lg" className="gap-2 text-lg" asChild>
