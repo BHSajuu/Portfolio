@@ -18,9 +18,6 @@ export function Navbar() {
             <Link href="#skills">
               <a className="hover:text-primary transition-colors">Skills</a>
             </Link>
-            <Link href="#dsa">
-              <a className="hover:text-primary transition-colors">DSA</a>
-            </Link>
             <Link href="#projects">
               <a className="hover:text-primary transition-colors">Projects</a>
             </Link>
