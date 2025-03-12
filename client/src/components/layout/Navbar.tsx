@@ -52,7 +52,7 @@ export function Navbar() {
           <div className="flex items-center gap-4">
             <Button variant="outline" asChild>
               <a
-                href="https://drive.google.com/file/d/1fJcNaVV-i8vbaoZyjxR3fXwOioT-Mk5_/view?usp=sharing"
+                href="https://drive.google.com/file/d/1v1owH2ekpQ718dfB4NqhGhEHXE_wpBEu/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer">
                 Resume
