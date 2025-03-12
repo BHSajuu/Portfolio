@@ -1,9 +1,5 @@
-import { motion } from "framer-motion";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -15,13 +11,26 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { insertMessageSchema, type InsertMessage } from "@shared/schema";
-import { apiRequest } from "@/lib/queryClient";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+
+const contactFormSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 export function Contact() {
   const { toast } = useToast();
-  const form = useForm<InsertMessage>({
-    resolver: zodResolver(insertMessageSchema),
+  const [isSending, setIsSending] = useState(false);
+
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -29,26 +38,45 @@ export function Contact() {
     },
   });
 
-  const mutation = useMutation({
-    mutationFn: async (data: InsertMessage) => {
-      const res = await apiRequest("POST", "/api/contact", data);
-      return res.json();
-    },
-    onSuccess: () => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
-      form.reset();
-    },
-    onError: (error: Error) => {
+  const onSubmit: SubmitHandler<ContactFormValues> = async (data) => {
+    setIsSending(true);
+    try {
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("message", data.message);
+      formData.append("access_key", "aa75e5cf-7f08-4620-8475-b9912e092f4e");
+
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      }).then((res) => res.json());
+
+      if (res.success) {
+        toast({
+          title: "Message sent!",
+          description: "Thank you for your message. I'll get back to you soon.",
+        });
+        form.reset();
+      }
+    } catch (error) {
       toast({
         title: "Error",
-        description: error.message,
+        description:
+          error instanceof Error ? error.message : "Failed to send message",
         variant: "destructive",
       });
-    },
-  });
+    } finally {
+      setIsSending(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-20 bg-muted/30">
@@ -57,10 +85,9 @@ export function Contact() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
+          viewport={{ once: true }}>
           <h2 className="text-3xl font-bold mb-8 text-center">Contact Me</h2>
-          
+
           <Card className="max-w-md mx-auto">
             <CardHeader>
               <CardTitle>Get in Touch</CardTitle>
@@ -68,9 +95,8 @@ export function Contact() {
             <CardContent>
               <Form {...form}>
                 <form
-                  onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
-                  className="space-y-4"
-                >
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-4">
                   <FormField
                     control={form.control}
                     name="name"
@@ -84,7 +110,7 @@ export function Contact() {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="email"
@@ -98,7 +124,7 @@ export function Contact() {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="message"
@@ -116,13 +142,9 @@ export function Contact() {
                       </FormItem>
                     )}
                   />
-                  
-                  <Button
-                    type="submit"
-                    className="w-full"
-                    disabled={mutation.isPending}
-                  >
-                    {mutation.isPending ? "Sending..." : "Send Message"}
+
+                  <Button type="submit" className="w-full" disabled={isSending}>
+                    {isSending ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </Form>

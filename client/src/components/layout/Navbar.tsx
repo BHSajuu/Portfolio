@@ -3,7 +3,10 @@ import { ThemeToggle } from "../theme/ThemeToggle";
 import { Button } from "../ui/button";
 
 export function Navbar() {
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
@@ -20,39 +23,38 @@ export function Navbar() {
 
         <div className="flex items-center gap-6">
           <div className="hidden md:flex gap-6">
-            <a 
+            <a
               href="#about"
               onClick={(e) => handleNavClick(e, "#about")}
-              className="hover:text-primary transition-colors"
-            >
+              className="hover:text-primary transition-colors">
               About
             </a>
-            <a 
+            <a
               href="#skills"
               onClick={(e) => handleNavClick(e, "#skills")}
-              className="hover:text-primary transition-colors"
-            >
+              className="hover:text-primary transition-colors">
               Skills
             </a>
-            <a 
+            <a
               href="#projects"
               onClick={(e) => handleNavClick(e, "#projects")}
-              className="hover:text-primary transition-colors"
-            >
+              className="hover:text-primary transition-colors">
               Projects
             </a>
-            <a 
+            <a
               href="#contact"
               onClick={(e) => handleNavClick(e, "#contact")}
-              className="hover:text-primary transition-colors"
-            >
+              className="hover:text-primary transition-colors">
               Contact
             </a>
           </div>
 
           <div className="flex items-center gap-4">
             <Button variant="outline" asChild>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://drive.google.com/file/d/1fJcNaVV-i8vbaoZyjxR3fXwOioT-Mk5_/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer">
                 Resume
               </a>
             </Button>
