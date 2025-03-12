@@ -6,8 +6,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
+import { useState } from "react";
 
 const projects = [
   {
@@ -35,7 +44,7 @@ const projects = [
       "Framer Motion",
     ],
     github: "https://github.com/BHSajuu/IEEE-Website.git",
-    demo: "/notAvailable",
+    demo: "",
   },
   {
     title: "Simon Game - Web-Based Memory Game",
@@ -57,6 +66,104 @@ const projects = [
   },
 ];
 
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  tech: string[];
+  github: string;
+  demo: string;
+}
+
+function ProjectCard({ project }: { project: Project }) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}>
+      <Card>
+        <CardHeader>
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-48 object-cover rounded-t-lg"
+          />
+        </CardHeader>
+        <CardContent>
+          <CardTitle className="mb-2">{project.title}</CardTitle>
+          <p className="text-muted-foreground mb-4">{project.description}</p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.tech.map((tech) => (
+              <span
+                key={tech}
+                className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </CardContent>
+        <CardFooter className="flex gap-4">
+          <Button variant="outline" size="sm" asChild>
+            <a href={project.github} target="_blank" rel="noopener noreferrer">
+              <Github className="mr-2 h-4 w-4" />
+              Code
+            </a>
+          </Button>
+
+          {project.demo ? (
+            <Button size="sm" asChild>
+              <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="mr-2 h-4 w-4" />
+                Demo
+              </a>
+            </Button>
+          ) : (
+            <>
+              <Button size="sm" onClick={() => setIsDialogOpen(true)}>
+                <ExternalLink className="mr-2 h-4 w-4" />
+                Demo
+              </Button>
+
+              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <span>🚧 Project Ongoing</span>
+                    </DialogTitle>
+                    <DialogDescription>
+                      This project is currently in development. You can view the
+                      code on GitHub!
+                    </DialogDescription>
+                  </DialogHeader>
+
+                  <div className="flex gap-4 mt-4">
+                    <Button asChild>
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setIsDialogOpen(false)}>
+                        <Github className="mr-2 h-4 w-4" />
+                        View Code
+                      </a>
+                    </Button>
+                    <DialogClose asChild>
+                      <Button variant="outline">Close</Button>
+                    </DialogClose>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </>
+          )}
+        </CardFooter>
+      </Card>
+    </motion.div>
+  );
+}
+
 export function Projects() {
   return (
     <section id="projects" className="py-20">
@@ -70,57 +177,7 @@ export function Projects() {
 
           <div className="grid md:grid-cols-2 gap-6">
             {projects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}>
-                <Card>
-                  <CardHeader>
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-48 object-cover rounded-t-lg"
-                    />
-                  </CardHeader>
-                  <CardContent>
-                    <CardTitle className="mb-2">{project.title}</CardTitle>
-                    <p className="text-muted-foreground mb-4">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tech.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                  <CardFooter className="flex gap-4">
-                    <Button variant="outline" size="sm" asChild>
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        <Github className="mr-2 h-4 w-4" />
-                        Code
-                      </a>
-                    </Button>
-                    <Button size="sm" asChild>
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        Demo
-                      </a>
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </motion.div>
+              <ProjectCard key={project.title} project={project} />
             ))}
           </div>
         </motion.div>
