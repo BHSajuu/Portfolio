@@ -39,8 +39,7 @@ const handleNavClick = (
 
 export function Hero() {
   return (
-    <section className="ml-16 min-h-screen relative overflow-hidden bg-gradient-to-b from-background to-background/80">
-      {/* Animated background elements */}
+    <section className=" ml-4 md:ml-16 min-h-screen relative overflow-hidden bg-gradient-to-b from-background to-background/80">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-grid-white/10" />
         {[...Array(3)].map((_, i) => (
@@ -63,24 +62,22 @@ export function Hero() {
         ))}
       </div>
 
-      {/* Main content */}
-      <div className="container mx-auto px-4 min-h-screen flex items-center relative">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="mt-20 sm:mt-0 container mx-auto px-4 min-h-screen flex items-center relative">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6">
-            {/* Full Stack Developer with typewriter effect */}
+            className="space-y-4 md:space-y-6">
             <div className="inline-block">
-              <div className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 inline-flex items-center gap-2">
+              <div className="px-3 py-1 md:px-4 md:py-2 rounded-full bg-primary/10 border border-primary/20 inline-flex items-center gap-2">
                 <Code2 className="w-4 h-4" />
                 <div className="relative">
                   <motion.div
                     variants={typewriterVariants}
                     initial="hidden"
                     animate="visible"
-                    className="overflow-hidden whitespace-nowrap">
+                    className="overflow-hidden whitespace-nowrap text-sm md:text-base">
                     Full Stack Developer
                   </motion.div>
                   <motion.div
@@ -93,7 +90,6 @@ export function Hero() {
             </div>
 
             <div className="space-y-2">
-              {/* Name and Title with reveal effect */}
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -103,21 +99,14 @@ export function Hero() {
                   type: "spring",
                   stiffness: 100,
                 }}
-                className="text-4xl md:text-6xl font-bold leading-tight relative overflow-hidden">
+                className="text-2xl md:text-4xl lg:text-6xl font-bold leading-tight relative overflow-hidden">
                 <motion.div
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.8, delay: 1.5 }}
-                  className="text-3xl md:text-4xl font-medium mb-8">
+                  className="text-xl md:text-3xl lg:text-4xl font-medium mb-4 md:mb-8">
                   Boktiar Hussain Talukdar
                 </motion.div>
-                {/* <motion.div
-                  initial={{ y: "100%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.7 }}
-                  className="text-3xl md:text-4xl font-medium mb-2">
-                  Mechanical Engineer
-                </motion.div> */}
                 <motion.div
                   initial={{ x: "-100%" }}
                   animate={{ x: "100%" }}
@@ -126,7 +115,6 @@ export function Hero() {
                 />
               </motion.h1>
 
-              {/* Passionate About Tech with floating effect */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{
@@ -154,7 +142,7 @@ export function Hero() {
                     delay: 2.3,
                   },
                 }}
-                className="block text-4xl md:text-6xl font-bold">
+                className="block text-3xl md:text-4xl lg:text-6xl font-bold">
                 <span className="bg-gradient-to-r from-primary to-primary/50 text-transparent bg-clip-text">
                   Passionate About Tech
                 </span>
@@ -165,7 +153,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 3, duration: 0.5 }}
-              className="text-xl text-muted-foreground max-w-lg">
+              className="text-lg md:text-xl text-muted-foreground max-w-lg">
               Combining analytical rigor from DSA with modern full-stack
               development to create impactful digital experiences
             </motion.p>
@@ -174,8 +162,8 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 3.5, duration: 0.5 }}
-              className="flex flex-wrap gap-4">
-              <Button size="lg" className="gap-2 text-lg" asChild>
+              className="flex flex-wrap gap-3 md:gap-4">
+              <Button size="lg" className="gap-2 text-base md:text-lg" asChild>
                 <a
                   href="#projects"
                   onClick={(e) => handleNavClick(e, "#projects")}>
@@ -186,7 +174,7 @@ export function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                className="gap-2 text-lg"
+                className="gap-2 text-base md:text-lg"
                 asChild>
                 <a
                   href="#contact"
@@ -196,12 +184,11 @@ export function Hero() {
               </Button>
             </motion.div>
 
-            {/* Social Links */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 4, duration: 0.5 }}
-              className="flex gap-4 mt-4">
+              className="flex gap-3 md:gap-4 mt-4">
               <a
                 href="https://www.linkedin.com/in/boktiar-hussain-58766a254/"
                 target="_blank"
@@ -226,12 +213,11 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Image Section */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="relative aspect-square w-[500px] h-[500px] mx-auto">
+            className="relative aspect-square w-[300px] h-[300px] md:w-[500px] md:h-[500px] mx-auto mt-8 md:mt-0">
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-primary/5 animate-pulse" />
             <div className="relative rounded-full overflow-hidden border-2 border-primary/20 w-full h-full">
               <img
@@ -241,7 +227,6 @@ export function Hero() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
             </div>
-            {/* Tech icons floating around */}
             {[...Array(3)].map((_, i) => (
               <motion.div
                 key={i}
@@ -263,10 +248,12 @@ export function Hero() {
                   marginLeft: "-20px",
                   marginTop: "-20px",
                   transform: "translate(-50%, -50%)",
-                  transformOrigin: `center ${250 * 1}px`,
+                  transformOrigin: `center ${
+                    window.innerWidth >= 768 ? 250 : 150
+                  }px`,
                 }}>
-                <div className="w-10 h-10 rounded-lg bg-background/80 backdrop-blur-sm border border-primary/20 flex items-center justify-center shadow-lg">
-                  <Cpu className="w-6 h-6 text-primary" />
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-background/80 backdrop-blur-sm border border-primary/20 flex items-center justify-center shadow-lg">
+                  <Cpu className="w-4 h-4 md:w-6 md:h-6 text-primary" />
                 </div>
               </motion.div>
             ))}
