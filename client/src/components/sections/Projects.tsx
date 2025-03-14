@@ -75,15 +75,31 @@ interface Project {
   demo: string;
 }
 
+const cardVariants = {
+  offscreen: {
+    y: 100,
+    opacity: 0,
+  },
+  onscreen: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      bounce: 0.4,
+      duration: 0.8,
+    },
+  },
+};
+
 function ProjectCard({ project }: { project: Project }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}>
+      initial="offscreen"
+      whileInView="onscreen"
+      viewport={{ once: true, amount: 0.5 }}
+      variants={cardVariants}>
       <Card>
         <CardHeader>
           <img
@@ -176,7 +192,7 @@ export function Projects() {
           <h2 className="text-3xl font-bold mb-8 text-center">Projects</h2>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {projects.map((project, index) => (
+            {projects.map((project) => (
               <ProjectCard key={project.title} project={project} />
             ))}
           </div>
