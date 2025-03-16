@@ -79,6 +79,15 @@ const projects = [
     github: "https://github.com/BHSajuu/Live-React-Code-Editor.git",
     demo: "https://live-react-code-editor-eosin.vercel.app/",
   },
+  {
+    title: "Text to Image Generator",
+    description:
+      "A simple Next.js application that transforms text prompts into images using AI. This project leverages modern technologies such as Next.js, Tailwind CSS, and React to deliver a seamless, interactive experience.",
+    image: "assets/Text.png",
+    tech: ["Next.js", " Tailwind CSS", "FLUX.1-dev model ", "Lucide-react"],
+    github: "https://github.com/BHSajuu/Text-to-image-.git",
+    demo: "https://text-to-image-sooty.vercel.app/",
+  },
 ];
 
 interface Project {
