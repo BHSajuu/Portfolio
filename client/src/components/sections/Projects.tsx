@@ -47,6 +47,21 @@ const projects = [
     demo: "",
   },
   {
+    title: "Live React Code Editor",
+    description:
+      "It is a live code editor built using React and Sandpack, allowing users to write, edit, and execute React code in real time. The project also integrates external package installation and AI-powered code suggestions using the Gemini API.",
+    image: "assets/React_Editor.png",
+    tech: [
+      "React",
+      "Sandpack",
+      " Tailwind CSS",
+      "XTerm.js",
+      " Google Gemini API",
+    ],
+    github: "https://github.com/BHSajuu/Live-React-Code-Editor.git",
+    demo: "https://live-react-code-editor-eosin.vercel.app/",
+  },
+  {
     title: "Simon Game - Web-Based Memory Game",
     description:
       "The game challenges players to memorize and repeat sequences of colors and sounds, progressively increasing in difficulty.",
@@ -64,21 +79,7 @@ const projects = [
     github: "https://github.com/BHSajuu/Chat-Application.git",
     demo: "https://chat-app-gs-b3dbb.firebaseapp.com/",
   },
-  {
-    title: "Live React Code Editor",
-    description:
-      "It is a live code editor built using React and Sandpack, allowing users to write, edit, and execute React code in real time. The project also integrates external package installation and AI-powered code suggestions using the Gemini API.",
-    image: "assets/React_Editor.png",
-    tech: [
-      "React",
-      "Sandpack",
-      " Tailwind CSS",
-      "XTerm.js",
-      " Google Gemini API",
-    ],
-    github: "https://github.com/BHSajuu/Live-React-Code-Editor.git",
-    demo: "https://live-react-code-editor-eosin.vercel.app/",
-  },
+
   {
     title: "Text to Image Generator",
     description:
