@@ -62,7 +62,7 @@ export function Hero() {
         ))}
       </div>
 
-      <div className="mt-20 sm:mt-0 container mx-auto px-4 min-h-screen flex items-center relative">
+      <div className="mt-5 sm:mt-0 container mx-auto px-4 min-h-screen flex items-center relative">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left Column - Text Content */}
           <motion.div
@@ -176,6 +176,20 @@ export function Hero() {
                     View Projects
                   </a>
                 </Button>
+
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="gap-2 text-lg"
+                  asChild>
+                  <a
+                    href="https://drive.google.com/file/d/1xsoWVvHzf4BsRGxmq8mi_9MZw3Zhth8N/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Resume
+                  </a>
+                </Button>
+
                 <Button
                   size="lg"
                   variant="outline"
