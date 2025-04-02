@@ -228,7 +228,7 @@ export function Hero() {
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-primary/5 animate-pulse" />
             <div className="relative rounded-full overflow-hidden border-2 border-primary/20 w-full h-full">
               <img
-                src="assets/profile_image.jpeg"
+                src="assets/profile picture.jpeg"
                 alt="Professional headshot"
                 className="object-cover object-center w-full h-full scale-110"
               />
