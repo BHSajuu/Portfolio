@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Code2, Cpu, Terminal } from "lucide-react";
+import { useEffect } from "react";
 import { SiGithub, SiLeetcode, SiLinkedin } from "react-icons/si";
 
 const typewriterVariants = {
@@ -37,7 +38,26 @@ const handleNavClick = (
   }
 };
 
+const playWelcomeSound = () => {
+  const audio = new Audio("/assets/Welcome-Audio.mp3");
+  audio.play();
+};
+
 export function Hero() {
+  useEffect(() => {
+    const handleUserInteraction = () => {
+      playWelcomeSound();
+      window.removeEventListener("click", handleUserInteraction);
+    };
+
+    // Add an event listener for user interaction
+    window.addEventListener("click", handleUserInteraction);
+
+    return () => {
+      window.removeEventListener("click", handleUserInteraction);
+    };
+  }, []);
+
   return (
     <section className="ml-4 md:ml-16 min-h-screen relative overflow-hidden bg-gradient-to-b from-background to-background/80">
       <div className="absolute inset-0 overflow-hidden">
@@ -245,6 +265,7 @@ export function Hero() {
                 src="assets/profile picture.jpeg"
                 alt="Professional headshot"
                 className="object-cover object-center w-full h-full scale-110"
+                onClick={playWelcomeSound}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
             </div>
