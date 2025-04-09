@@ -17,7 +17,6 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      {/* <Navbar /> */}
       <Router />
       <Toaster />
     </QueryClientProvider>
