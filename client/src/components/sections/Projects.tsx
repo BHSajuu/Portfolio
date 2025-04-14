@@ -29,6 +29,25 @@ const projects = [
     demo: "https://bh-connect-vqwv.vercel.app/",
   },
   {
+    title: "Chatty",
+    description:
+      "Chatty is a MERN  based real-time chat application. It allows users to communicate seamlessly with features like user authentication, real-time messaging, and more.",
+    image: "assets/chatty.png",
+    tech: [
+      "Node.js",
+      "Express",
+      "React",
+      "Javascript",
+      " Tailwind CSS",
+      "DaisyUI",
+      " Zustand",
+      "MongoDB",
+      " Socket.IO",
+    ],
+    github: "https://github.com/BHSajuu/chatty.git",
+    demo: "https://bh-chatty.onrender.com/",
+  },
+  {
     title: "IEEE Society Website",
     description:
       "This is the IEEE Society Website. It is built using modern tools like React, Nodejs, and Tailwind CSS. It uses Framer Motion for smooth effects and connects to a MongoDB database using Expressjs and Mongoose. The website is simple and fun to use. You can check the code on GitHub, but there is no demo available yet.",
