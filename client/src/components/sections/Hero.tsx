@@ -322,7 +322,7 @@ export function Hero() {
                 className="gap-2 text-lg"
                 asChild>
                 <a
-                  href="https://drive.google.com/file/d/1xsoWVvHzf4BsRGxmq8mi_9MZw3Zhth8N/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1sOqu9EHIa1VsQn7TUzLCg7PNUxbKz8U2/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer">
                   Resume
