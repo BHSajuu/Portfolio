@@ -140,10 +140,36 @@ export function Hero() {
             </motion.h1>
 
             {/* Passionate About Tech */}
-            <div
-              className="text-2xl text-purple-300 s ">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                y: [0, -8, 0],
+                filter: [
+                  "drop-shadow(0 0 0px hsl(var(--primary)))",
+                  "drop-shadow(0 0 10px hsl(var(--primary)))",
+                  "drop-shadow(0 0 0px hsl(var(--primary)))",
+                ],
+              }}
+              transition={{
+                y: {
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+                filter: {
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+                opacity: {
+                  duration: 0.5,
+                  delay: 2.3,
+                },
+              }}
+              className="text-2xl text-purple-300">
                 <TypewriterSubheading />
-            </div>
+            </motion.div>
 
             {/* Description */}
             <motion.p

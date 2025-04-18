@@ -9,9 +9,18 @@ export function TypewriterSubheading() {
   const [currentPhrase, setCurrentPhrase] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [startTyping, setStartTyping] = useState(false); // New state to delay typing
   const timer = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    // Delay the start of typing by 1 second
+    const delayTimer = setTimeout(() => setStartTyping(true), 2500);
+    return () => clearTimeout(delayTimer);
+  }, []);
+
+  useEffect(() => {
+    if (!startTyping) return; // Wait until the delay is over
+
     const phrase = PHRASES[currentPhrase];
 
     if (!isDeleting && displayed.length < phrase.length) {
@@ -35,9 +44,8 @@ export function TypewriterSubheading() {
     return () => {
       if (timer.current) clearTimeout(timer.current);
     };
-  }, [displayed, isDeleting, currentPhrase]);
+  }, [displayed, isDeleting, currentPhrase, startTyping]);
 
- 
   const [showCursor, setShowCursor] = useState(true);
   useEffect(() => {
     const blink = setInterval(() => setShowCursor((v) => !v), 550);
