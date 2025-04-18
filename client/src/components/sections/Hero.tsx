@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Code2, Cpu, Terminal } from "lucide-react";
 import { useEffect } from "react";
 import { SiGithub, SiLeetcode, SiLinkedin } from "react-icons/si";
+import {TypewriterSubheading} from "../layout/TypewriterSubheading"
+
 
 const typewriterVariants = {
   hidden: { width: 0 },
@@ -83,7 +85,7 @@ export function Hero() {
       </div>
 
       <div className="mt-5 sm:mt-0 container mx-auto px-4 min-h-screen flex items-center relative">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div className="md:ml-10 grid md:grid-cols-2 gap-8 md:gap-56 items-center">
           {/* Left Column - Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -138,38 +140,10 @@ export function Hero() {
             </motion.h1>
 
             {/* Passionate About Tech */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: 1,
-                y: [0, -8, 0],
-                filter: [
-                  "drop-shadow(0 0 0px hsl(var(--primary)))",
-                  "drop-shadow(0 0 10px hsl(var(--primary)))",
-                  "drop-shadow(0 0 0px hsl(var(--primary)))",
-                ],
-              }}
-              transition={{
-                y: {
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
-                filter: {
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
-                opacity: {
-                  duration: 0.5,
-                  delay: 2.3,
-                },
-              }}
-              className="block text-3xl md:text-4xl lg:text-6xl font-bold">
-              <span className="bg-gradient-to-r from-primary to-primary/50 text-transparent bg-clip-text">
-                Passionate About Tech
-              </span>
-            </motion.div>
+            <div
+              className="text-2xl text-purple-300 s ">
+                <TypewriterSubheading />
+            </div>
 
             {/* Description */}
             <motion.p
