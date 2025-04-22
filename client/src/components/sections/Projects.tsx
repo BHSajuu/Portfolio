@@ -45,7 +45,7 @@ const projects = [
       " Socket.IO",
     ],
     github: "https://github.com/BHSajuu/chatty.git",
-    demo: "https://bh-chatty.onrender.com/",
+    demo: "https://chatty-notb.onrender.com/",
   },
   {
     title: "IEEE Society Website",
