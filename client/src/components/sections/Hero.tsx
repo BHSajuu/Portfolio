@@ -1,10 +1,10 @@
+
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Code2, Cpu, Terminal } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SiGithub, SiLeetcode, SiLinkedin } from "react-icons/si";
-import {TypewriterSubheading} from "../layout/TypewriterSubheading"
-
+import { TypewriterSubheading } from "../layout/TypewriterSubheading";
 
 const typewriterVariants = {
   hidden: { width: 0 },
@@ -46,22 +46,44 @@ const playWelcomeSound = () => {
 };
 
 export function Hero() {
+  // 1. Visitor counter state
+  const [visits, setVisits] = useState<number>(0);
+
+  // 2. CountAPI: hit once per new user, then just get
   useEffect(() => {
-    const handleUserInteraction = () => {
+    const seen = localStorage.getItem("hasVisited");
+    const action = seen ? "get" : "hit";
+    const url = `https://api.countapi.xyz/${action}/my-portfolio.com/visits`;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setVisits(data.value);
+        if (!seen) {
+          localStorage.setItem("hasVisited", "true");
+        }
+      })
+      .catch(console.error);
+  }, []);
+
+  // 3. Welcome sound on first click
+  useEffect(() => {
+    const handler = () => {
       playWelcomeSound();
-      window.removeEventListener("click", handleUserInteraction);
+      window.removeEventListener("click", handler);
     };
-
-    // Add an event listener for user interaction
-    window.addEventListener("click", handleUserInteraction);
-
-    return () => {
-      window.removeEventListener("click", handleUserInteraction);
-    };
+    window.addEventListener("click", handler);
+    return () => window.removeEventListener("click", handler);
   }, []);
 
   return (
     <section className="ml-4 md:ml-16 min-h-screen relative overflow-hidden bg-gradient-to-b from-background to-background/80">
+      {/* Visitor counter badge */}
+      <div className="absolute top-4 right-4 bg-primary/10 px-3 py-1 rounded-full">
+        <span className="font-semibold">Visitors: {visits}</span>
+      </div>
+
+      {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-grid-white/10" />
         {[...Array(3)].map((_, i) => (
@@ -78,21 +100,24 @@ export function Hero() {
               repeat: Infinity,
               delay: i * 2,
               ease: "linear",
-            }}>
+            }}
+          >
             <div className="w-full h-full border-[40px] rounded-full border-primary/20" />
           </motion.div>
         ))}
       </div>
 
+      {/* Main content */}
       <div className="mt-5 sm:mt-0 container mx-auto px-4 min-h-screen flex items-center relative">
         <div className="md:ml-10 grid md:grid-cols-2 gap-8 md:gap-56 items-center">
-          {/* Left Column - Text Content */}
+          {/* Left Column */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-4 md:space-y-6">
-            {/* Full Stack Developer Badge */}
+            className="space-y-4 md:space-y-6"
+          >
+            {/* Badge */}
             <div className="inline-block">
               <div className="px-3 py-1 md:px-4 md:py-2 rounded-full bg-primary/10 border border-primary/20 inline-flex items-center gap-2">
                 <Code2 className="w-4 h-4" />
@@ -101,7 +126,8 @@ export function Hero() {
                     variants={typewriterVariants}
                     initial="hidden"
                     animate="visible"
-                    className="overflow-hidden whitespace-nowrap text-sm md:text-base">
+                    className="overflow-hidden whitespace-nowrap text-sm md:text-base"
+                  >
                     Full Stack Developer
                   </motion.div>
                   <motion.div
@@ -123,12 +149,14 @@ export function Hero() {
                 type: "spring",
                 stiffness: 100,
               }}
-              className="text-2xl md:text-4xl lg:text-6xl font-bold leading-tight relative overflow-hidden">
+              className="text-2xl md:text-4xl lg:text-6xl font-bold leading-tight relative overflow-hidden"
+            >
               <motion.div
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, delay: 1.5 }}
-                className="text-xl md:text-3xl lg:text-4xl font-medium mb-4 md:mb-8">
+                className="text-xl md:text-3xl lg:text-4xl font-medium mb-4 md:mb-8"
+              >
                 Boktiar Hussain Talukdar
               </motion.div>
               <motion.div
@@ -139,7 +167,7 @@ export function Hero() {
               />
             </motion.h1>
 
-            {/* Passionate About Tech */}
+            {/* Typewriter subheading */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{
@@ -167,8 +195,9 @@ export function Hero() {
                   delay: 2.3,
                 },
               }}
-              className="text-2xl text-purple-300">
-                <TypewriterSubheading />
+              className="text-2xl text-purple-300"
+            >
+              <TypewriterSubheading />
             </motion.div>
 
             {/* Description */}
@@ -176,7 +205,8 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 3, duration: 0.5 }}
-              className="text-lg md:text-xl text-muted-foreground max-w-lg">
+              className="text-lg md:text-xl text-muted-foreground max-w-lg"
+            >
               Combining analytical rigor from DSA with modern full-stack
               development to create impactful digital experiences
             </motion.p>
@@ -187,37 +217,26 @@ export function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 3.5, duration: 0.5 }}
-                className="flex flex-wrap gap-4">
+                className="flex flex-wrap gap-4"
+              >
                 <Button size="lg" className="gap-2 text-lg" asChild>
-                  <a
-                    href="#projects"
-                    onClick={(e) => handleNavClick(e, "#projects")}>
-                    <Terminal className="w-5 h-5" />
-                    View Projects
+                  <a href="#projects" onClick={(e) => handleNavClick(e, "#projects")}>
+                    <Terminal className="w-5 h-5" /> View Projects
                   </a>
                 </Button>
 
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="gap-2 text-lg"
-                  asChild>
+                <Button variant="outline" size="lg" className="gap-2 text-lg" asChild>
                   <a
                     href="https://drive.google.com/file/d/1xsoWVvHzf4BsRGxmq8mi_9MZw3Zhth8N/view?usp=sharing"
                     target="_blank"
-                    rel="noopener noreferrer">
+                    rel="noopener noreferrer"
+                  >
                     Resume
                   </a>
                 </Button>
 
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="gap-2 text-lg"
-                  asChild>
-                  <a
-                    href="#contact"
-                    onClick={(e) => handleNavClick(e, "#contact")}>
+                <Button size="lg" variant="outline" className="gap-2 text-lg" asChild>
+                  <a href="#contact" onClick={(e) => handleNavClick(e, "#contact")}>
                     Contact Me
                   </a>
                 </Button>
@@ -227,26 +246,30 @@ export function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 4, duration: 0.5 }}
-                className="flex gap-4 mt-4">
+                className="flex gap-4 mt-4"
+              >
                 <a
                   href="https://www.linkedin.com/in/boktiar-hussain-58766a254/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors">
+                  className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors"
+                >
                   <SiLinkedin className="w-6 h-6" />
                 </a>
                 <a
                   href="https://github.com/BHSajuu"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors">
+                  className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors"
+                >
                   <SiGithub className="w-6 h-6" />
                 </a>
                 <a
                   href="https://leetcode.com/u/Boktiar/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors">
+                  className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors"
+                >
                   <SiLeetcode className="w-6 h-6" />
                 </a>
               </motion.div>
@@ -258,7 +281,8 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="relative aspect-square w-[300px] h-[300px] md:w-[500px] md:h-[500px] mx-auto">
+            className="relative aspect-square w-[300px] h-[300px] md:w-[500px] md:h-[500px] mx-auto"
+          >
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-primary/5 animate-pulse" />
             <div className="relative rounded-full overflow-hidden border-2 border-primary/20 w-full h-full">
               <img
@@ -274,14 +298,8 @@ export function Hero() {
                 key={i}
                 className="absolute"
                 initial={{ rotate: i * 120 }}
-                animate={{
-                  rotate: [i * 120, i * 120 + 360],
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
+                animate={{ rotate: [i * 120, i * 120 + 360] }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 style={{
                   width: "40px",
                   height: "40px",
@@ -289,11 +307,12 @@ export function Hero() {
                   left: "50%",
                   marginLeft: "-20px",
                   marginTop: "-20px",
-                  transform: "translate(-50%, -50%)",
+                  transform: `translate(-50%, -50%)`,
                   transformOrigin: `center ${
                     window.innerWidth >= 768 ? 250 : 150
                   }px`,
-                }}>
+                }}
+              >
                 <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-background/80 backdrop-blur-sm border border-primary/20 flex items-center justify-center shadow-lg">
                   <Cpu className="w-4 h-4 md:w-6 md:h-6 text-primary" />
                 </div>
@@ -307,64 +326,57 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 3.5, duration: 0.5 }}
-              className="flex flex-wrap gap-3 justify-center">
+              className="flex flex-wrap gap-3 justify-center"
+            >
               <Button size="lg" className="gap-2 text-base" asChild>
-                <a
-                  href="#projects"
-                  onClick={(e) => handleNavClick(e, "#projects")}>
+                <a href="#projects" onClick={(e) => handleNavClick(e, "#projects")}>
                   <Terminal className="w-5 h-5" />
                   View Projects
                 </a>
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="gap-2 text-lg"
-                asChild>
+              <Button variant="outline" size="lg" className="gap-2 text-lg" asChild>
                 <a
                   href="https://drive.google.com/file/d/1sOqu9EHIa1VsQn7TUzLCg7PNUxbKz8U2/view?usp=sharing"
                   target="_blank"
-                  rel="noopener noreferrer">
+                  rel="noopener noreferrer"
+                >
                   Resume
                 </a>
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="gap-2 text-base"
-                asChild>
-                <a
-                  href="#contact"
-                  onClick={(e) => handleNavClick(e, "#contact")}>
+              <Button size="lg" variant="outline" className="gap-2 text-base" asChild>
+                <a href="#contact" onClick={(e) => handleNavClick(e, "#contact")}>
                   Contact Me
                 </a>
               </Button>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 4, duration: 0.5 }}
-              className="flex gap-4 justify-center">
+              className="flex gap-4 justify-center"
+            >
               <a
                 href="https://www.linkedin.com/in/boktiar-hussain-58766a254/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors">
+                className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors"
+              >
                 <SiLinkedin className="w-6 h-6" />
               </a>
               <a
                 href="https://github.com/BHSajuu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors">
+                className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors"
+              >
                 <SiGithub className="w-6 h-6" />
               </a>
               <a
                 href="https://leetcode.com/u/Boktiar/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors">
+                className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors"
+              >
                 <SiLeetcode className="w-6 h-6" />
               </a>
             </motion.div>
