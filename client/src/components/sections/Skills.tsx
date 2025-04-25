@@ -114,7 +114,7 @@ export function Skills() {
           viewport={{ once: true }}
           className="grid md:grid-cols-3 gap-6 mt-12"
         >
-          <Card className="p-6 flex flex-col items-center text-center">
+            <Card className="p-6 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 ease-in-out">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Code className="w-8 h-8 text-primary" />
             </div>
@@ -124,7 +124,7 @@ export function Skills() {
             </p>
           </Card>
 
-          <Card className="p-6 flex flex-col items-center text-center">
+          <Card className="p-6 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 ease-in-out">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Globe className="w-8 h-8 text-primary" />
             </div>
@@ -134,7 +134,7 @@ export function Skills() {
             </p>
           </Card>
 
-          <Card className="p-6 flex flex-col items-center text-center">
+          <Card className="p-6 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 ease-in-out">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Database className="w-8 h-8 text-primary" />
             </div>
