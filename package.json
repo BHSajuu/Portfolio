@@ -75,6 +75,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "concurrently": "^9.1.2",
+    "daisyui": "^5.0.28",
     "esbuild": "^0.25.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",

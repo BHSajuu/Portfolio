@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Code2, Cpu, Terminal } from "lucide-react";
 import { useEffect } from "react";
 import { SiGithub, SiLeetcode, SiLinkedin } from "react-icons/si";
-import {TypewriterSubheading} from "../layout/TypewriterSubheading"
+import { TypewriterSubheading } from "../layout/TypewriterSubheading"
 
 
 const typewriterVariants = {
@@ -168,7 +168,7 @@ export function Hero() {
                 },
               }}
               className="text-2xl text-purple-300">
-                <TypewriterSubheading />
+              <TypewriterSubheading />
             </motion.div>
 
             {/* Description */}
@@ -233,24 +233,32 @@ export function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors">
-                  <SiLinkedin className="w-6 h-6" />
+                  <div className="tooltip tooltip-bottom tooltip-primary" data-tip="LinkedIn">
+                    <SiLinkedin className="w-6 h-6" />
+                  </div>
                 </a>
+
                 <a
                   href="https://github.com/BHSajuu"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors">
-                  <SiGithub className="w-6 h-6" />
+                  <div className="tooltip tooltip-bottom tooltip-primary" data-tip="GitHub">
+                    <SiGithub className="w-6 h-6" />
+                  </div>
                 </a>
                 <a
                   href="https://leetcode.com/u/Boktiar/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors">
-                  <SiLeetcode className="w-6 h-6" />
+                  <div className="tooltip tooltip-bottom tooltip-primary" data-tip="LeetCode">
+                    <SiLeetcode className="w-6 h-6" />
+                  </div>
                 </a>
               </motion.div>
             </div>
+
           </motion.div>
 
           {/* Right Column - Image */}
@@ -290,9 +298,8 @@ export function Hero() {
                   marginLeft: "-20px",
                   marginTop: "-20px",
                   transform: "translate(-50%, -50%)",
-                transformOrigin: `center ${
-                    window.innerWidth >= 768 ? 250 : 150
-                  }px`,
+                  transformOrigin: `center ${window.innerWidth >= 768 ? 250 : 150
+                    }px`,
                 }}>
                 <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-background/80 backdrop-blur-sm border border-primary/20 flex items-center justify-center shadow-lg">
                   <Cpu className="w-4 h-4 md:w-6 md:h-6 text-primary" />
@@ -351,8 +358,9 @@ export function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors">
-                <SiLinkedin className="w-6 h-6" />
+                <SiLinkedin className="w-6 h-6 tooltip " data-tip="hello" />
               </a>
+
               <a
                 href="https://github.com/BHSajuu"
                 target="_blank"
