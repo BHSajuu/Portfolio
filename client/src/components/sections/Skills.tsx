@@ -56,7 +56,7 @@ const skillCategories = [
 
 export function Skills() {
   return (
-    <section id="skills" className="pt-10 bg-muted/30">
+    <section id="skills" className="pt-10 bg-muted/20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

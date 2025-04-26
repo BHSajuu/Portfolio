@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export function About() {
   return (
-    <section id="about" className="pt-5 bg-muted/30">
+    <section id="about" className="pt-5 bg-muted/20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
