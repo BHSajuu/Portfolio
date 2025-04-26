@@ -56,20 +56,18 @@ const skillCategories = [
 
 export function Skills() {
   return (
-    <section id="skills" className="py-24 bg-muted/30">
+    <section id="skills" className="pt-10 bg-muted/30">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <h2 className="text-3xl font-bold ">Skills</h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-6"></div>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            My technical expertise spans across various technologies and tools
-          </p>
+          <div className="w-20 h-1 bg-primary mx-auto rounded-full "></div>
+          
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">
