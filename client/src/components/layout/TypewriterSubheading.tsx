@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const PHRASES = ["I'm a Full Stack Developer", "Currently an SDE Intern @Bluestock", "Solved 350+ DSA Problems on LeetCode", "Learning Data Science and AI"];
-const TYPING_SPEED = 55; 
-const DELETING_SPEED = 32; 
-const HOLD_TIME = 1250; 
+const TYPING_SPEED = 55;
+const DELETING_SPEED = 32;
+const HOLD_TIME = 1250;
 
 export function TypewriterSubheading() {
   const [currentPhrase, setCurrentPhrase] = useState(0);
@@ -53,9 +53,13 @@ export function TypewriterSubheading() {
   }, []);
 
   return (
-    <span style={{whiteSpace: "pre"}}>
+    <span className="
+    whitespace-pre-wrap     
+    lg:whitespace-pre      
+    
+  ">
       {displayed}
-      <span style={{fontWeight: "bold", opacity: showCursor ? 1 : 0}}>|</span>
+      <span style={{ fontWeight: "bold", opacity: showCursor ? 1 : 0 }}>|</span>
     </span>
   );
 }
