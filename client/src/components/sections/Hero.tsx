@@ -4,7 +4,9 @@ import { Code2, Cpu, Terminal } from "lucide-react";
 import { useEffect } from "react";
 import { SiGithub, SiLeetcode, SiLinkedin } from "react-icons/si";
 import { TypewriterSubheading } from "../layout/TypewriterSubheading"
-
+import { Dialog, DialogContent } from "../ui/dialog";
+import ResumePage from "../layout/Resume";
+import { useState } from "react";
 
 const typewriterVariants = {
   hidden: { width: 0 },
@@ -46,6 +48,9 @@ const playWelcomeSound = () => {
 };
 
 export function Hero() {
+
+  const [showResume, setShowResume] = useState(false);
+
   useEffect(() => {
     const handleUserInteraction = () => {
       playWelcomeSound();
@@ -201,13 +206,9 @@ export function Hero() {
                   variant="outline"
                   size="lg"
                   className="gap-2 text-lg"
-                  asChild>
-                  <a
-                    href="https://drive.google.com/file/d/1xsoWVvHzf4BsRGxmq8mi_9MZw3Zhth8N/view?usp=sharing"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    Resume
-                  </a>
+                  onClick={() => setShowResume(true)}
+                >
+                  Resume
                 </Button>
 
                 <Button
@@ -379,6 +380,13 @@ export function Hero() {
           </div>
         </div>
       </div>
+      {/* Resume Dialog */}
+      <Dialog open={showResume} onOpenChange={setShowResume}>
+        <DialogContent className="max-w-5xl p-0 overflow-y-auto max-h-[90vh]">
+          <ResumePage />
+        </DialogContent>
+      </Dialog>
+
     </section>
   );
 }
