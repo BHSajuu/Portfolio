@@ -1,7 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+
+import { cn } from "@/lib/utils";
 import {
   DownloadIcon,
   ExternalLinkIcon,
@@ -10,6 +11,7 @@ import {
   MailIcon,
   PhoneIcon,
 } from "lucide-react";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 
 const containerVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -22,7 +24,7 @@ const containerVariants = {
 
 export default function ResumePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/80 p-6 sm:p-12">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-background/90 p-6 sm:p-12">
       <motion.div
         initial="hidden"
         animate="visible"
@@ -34,46 +36,46 @@ export default function ResumePage() {
         <motion.div
           variants={containerVariants}
           custom={1}
-          className="flex flex-col items-center bg-background/80 border border-primary/20 rounded-3xl p-10 shadow-lg backdrop-blur-lg"
+          className="flex flex-col items-center bg-background/90 border-2 border-primary/30 rounded-[2rem] p-8 sm:p-10 shadow-xl backdrop-blur-xl backdrop-saturate-150"
         >
-          <h1 className="text-6xl font-extrabold mb-4 text-primary animate-pulse">
+          <h1 className="text-4xl sm:text-6xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent drop-shadow-md">
             Boktiar Hussain Talukdar
           </h1>
-          <div className="flex flex-wrap justify-center gap-6 text-muted-foreground mt-2">
+          <div className="flex flex-wrap justify-center gap-6 text-foreground/80 mt-2">
             <motion.div whileHover={{ y: -3 }} className="flex items-center space-x-2">
-              <MailIcon size={22} className="text-primary" />
-              <span>boktiaroff01@gmail.com</span>
+              <MailIcon size={22} className="text-primary/90" />
+              <span className="text-foreground/90 hover:text-primary transition-colors">boktiaroff01@gmail.com</span>
             </motion.div>
             <motion.div whileHover={{ y: -3 }} className="flex items-center space-x-2">
-              <PhoneIcon size={22} className="text-primary" />
-              <span>+91-600-2580-289</span>
+              <PhoneIcon size={22} className="text-primary/90" />
+              <span className="text-foreground/90 hover:text-primary transition-colors">+91-600-2580-289</span>
             </motion.div>
           </div>
-          <div className="flex flex-wrap justify-center gap-6 mt-6">
+          <div className="flex  flex-wrap justify-center gap-6 mt-6">
             {[
-              { Icon: ExternalLinkIcon, label: 'Portfolio', href: 'https://portfolio055.vercel.app/' },
-              { Icon: GithubIcon, label: 'Github', href: 'https://github.com/BHSajuu' },
-              { Icon: LinkedinIcon, label: 'LinkedIn', href: 'https://www.linkedin.com/in/username/' },
+              { Icon: SiGithub, label: 'Github', href: 'https://github.com/BHSajuu' },
+              { Icon: SiLinkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/username/' },
+              
             ].map((link, idx) => (
               <motion.a
                 key={idx}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center space-x-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-shadow"
+                whileHover={{ scale: 1.05, translateY: -2 }}
+                className="flex items-center space-x-2  bg-primary/10 border-2 border-primary/20 px-5 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all duration-200 hover:bg-primary/15 group"
               >
-                <link.Icon size={24} className="text-primary" />
-                <span className="font-semibold text-primary">{link.label}</span>
+                <link.Icon size={24} className=" group-hover:text-primary" />
+                <span className="font-semibold text-gray-300 group-hover:text-primary transition-colors">{link.label}</span>
               </motion.a>
             ))}
             <motion.button
               whileHover={{ scale: 1.05 }}
-              className="flex items-center space-x-2 bg-primary text-background px-6 py-2 rounded-full shadow hover:opacity-90 transition-opacity"
-              onClick={() => window.open('/resume.pdf', '_blank')}
+              className="flex items-center space-x-2 bg-gradient-to-br from-primary to-primary/80 text-background px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-shadow font-bold hover:brightness-105"
+              onClick={() => window.open('https://drive.google.com/file/d/1Cdf1eaEnGyM80Eg1r2qv184KamexfiOI/view?usp=sharing', '_blank')}
             >
-              <DownloadIcon size={24} />
-              <span className="font-semibold">Download PDF</span>
+              <DownloadIcon size={24} className="text-background/90" />
+              <span className="text-gray-400">Download PDF</span>
             </motion.button>
           </div>
         </motion.div>
@@ -137,36 +139,47 @@ export default function ResumePage() {
           }
         ].map((section, idx) => (
           <motion.section key={section.id} variants={containerVariants} custom={2 + idx}>
-            <h2 className="text-4xl font-bold mb-6 text-primary border-b-2 border-primary/50 inline-block">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-primary/90 pb-2 border-b-4 border-primary/30 w-fit">
               {section.title}
             </h2>
             {section.grid ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 {section.items.map((skill, i) => (
-                  <motion.div whileHover={{ scale: 1.05 }} className="bg-background py-2 px-4 rounded-full text-center font-medium text-primary border border-primary/20 shadow-sm hover:shadow-md transition-shadow" key={i}>
+                  <motion.div 
+                    whileHover={{ scale: 1.05, translateY: -4 }}
+                    className={cn(
+                      "py-2 px-4 rounded-xl",
+                      "text-center font-medium text-foreground/90",
+                      "border-2 border-primary/20 shadow-sm hover:shadow-lg",
+                      "transition-all duration-200",
+                      "bg-gradient-to-b from-background/95 to-primary/5",
+                      "hover:text-primary/90"
+                    )}
+                    key={i}
+                  >
                     {skill}
                   </motion.div>
                 ))}
               </div>
             ) : (
               section.items.map((item, i) => (
-                <Card key={i} className="rounded-xl mb-4 border border-primary/20 shadow-md hover:shadow-lg transition-shadow">
-                  <CardContent className="flex flex-col sm:flex-row sm:justify-between">
+                <Card key={i} className="rounded-xl mb-4 border-2 border-primary/20 shadow-lg hover:shadow-xl transition-shadow group hover:border-primary/40 bg-gradient-to-br from-background/95 to-primary/5">
+                  <CardContent className="p-6 flex flex-col sm:flex-row sm:justify-between gap-4">
                     <div>
                       {typeof item === 'object' && 'label' in item && (
-                        <h3 className="text-2xl font-semibold text-primary">{item.label}</h3>
+                        <h3 className="text-2xl font-semibold text-foreground/90">{item.label}</h3>
                       )}
-                      {typeof item === 'object' && 'sub' in item && <p className="italic text-muted-foreground mt-1">{item.sub}</p>}
-                      {typeof item === 'object' && 'period' in item && item.period && <p className="italic text-muted-foreground mt-1">{item.period}</p>}
+                      {typeof item === 'object' && 'sub' in item && <p className="text-foreground/70 mt-1 text-sm leading-relaxed">{item.sub}</p>}
+                      {typeof item === 'object' && 'period' in item && item.period && <p className="text-foreground/70 mt-1 text-sm italic">{item.period}</p>}
                       {typeof item === 'object' && 'points' in item && (
-                        <ul className="list-disc list-inside mt-2 space-y-1">
+                        <ul className="list-disc list-inside mt-2 space-y-1 text-foreground/80">
                           {item.points.map((pt, pi) => (
                             <li key={pi}>{pt}</li>
                           ))}
                         </ul>
                       )}
                       {typeof item === 'object' && 'subPoints' in item && (
-                        <ul className="list-disc list-inside mt-2 space-y-1 ml-4">
+                        <ul className="list-disc list-inside mt-2 space-y-1 ml-4 text-foreground/80">
                           {item.subPoints.map((pt, pi) => (
                             <li key={pi}>{pt}</li>
                           ))}
@@ -181,7 +194,7 @@ export default function ResumePage() {
                             href={ln.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center space-x-1 text-primary hover:underline"
+                            className="flex items-center space-x-1 text-primary/90 hover:text-primary transition-colors"
                           >
                             <ExternalLinkIcon size={18} />
                             <span>{ln.text}</span>
