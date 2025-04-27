@@ -325,17 +325,13 @@ export function Hero() {
                 </a>
               </Button>
               <Button
-                variant="outline"
-                size="lg"
-                className="gap-2 text-lg"
-                asChild>
-                <a
-                  href="https://drive.google.com/file/d/1sOqu9EHIa1VsQn7TUzLCg7PNUxbKz8U2/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer">
+                  variant="outline"
+                  size="lg"
+                  className="gap-2 text-lg"
+                  onClick={() => setShowResume(true)}
+                >
                   Resume
-                </a>
-              </Button>
+                </Button>
               <Button
                 size="lg"
                 variant="outline"
