@@ -81,6 +81,19 @@ const projects = [
     demo: "https://live-react-code-editor-eosin.vercel.app/",
   },
   {
+    title: "Advanced Placement Preparation Tracker",
+    description:
+      "This is a smart and personalized preparation tracker for MAANG aspirants, built using modern tech stacks. It helps users set 60-day goals, track daily progress, and visualize skill-based completion for cracking top tech company interviews.",
+    image: "assets/Tracker.png",
+    tech: [
+      "React", 
+      " Tailwind CSS",
+    ],
+    github: "https://github.com/BHSajuu/Advanced-Placement-Preparation-Tracker.git",
+    demo: "https://advanced-placement-preparation-trac.vercel.app/",
+  },
+  
+  {
     title: "Simon Game - Web-Based Memory Game",
     description:
       "The game challenges players to memorize and repeat sequences of colors and sounds, progressively increasing in difficulty.",
