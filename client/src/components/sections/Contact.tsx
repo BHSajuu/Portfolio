@@ -79,7 +79,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-muted/20">
+    <section id="contact" className="pt-10 pb-32 bg-muted/20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -88,7 +88,7 @@ export function Contact() {
           viewport={{ once: true }}>
           <h2 className="text-3xl font-bold mb-8 text-center">Contact Me</h2>
 
-          <Card className="max-w-md mx-auto">
+          <Card className="max-w-md mx-auto hover:scale-110 hover:mt-16 hover:border-transparent hover:shadow-xl hover:shadow-blue-300/30 transition-all duration-300">
             <CardHeader>
               <CardTitle>Get in Touch</CardTitle>
             </CardHeader>
