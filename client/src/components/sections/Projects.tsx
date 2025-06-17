@@ -13,10 +13,11 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const projects = [
   {
@@ -148,38 +149,117 @@ const cardVariants = {
   },
 };
 
+const hoverVariants = {
+  hover: {
+    y: -10,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
+    },
+  },
+};
+
+const techVariants = {
+  hover: {
+    scale: 1.05,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hover: {
+    y: -3,
+    textShadow: "0px 0px 8px rgba(59, 130, 246, 0.5)",
+  },
+};
+
 function ProjectCard({ project }: { project: Project }) {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!imageRef.current) return;
+    
+    const rect = imageRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateY = (x - centerX) / 25;
+    const rotateX = (centerY - y) / 25;
+    
+    imageRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    imageRef.current.style.boxShadow = `${-rotateY * 2}px ${rotateX * 2}px 20px rgba(0, 0, 0, 0.2)`;
+  };
+
+  const handleMouseLeave = () => {
+    if (imageRef.current) {
+      imageRef.current.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+      imageRef.current.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+    }
+  };
 
   return (
     <motion.div
       initial="offscreen"
       whileInView="onscreen"
       viewport={{ once: true, amount: 0.5 }}
-      variants={cardVariants}>
-      <Card className="hover:scale-105  hover:shadow-xl hover:shadow-blue-300/30 transition-all hover:border-transparent duration-300 ease-in-out">
-        <CardHeader>
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-48 object-cover rounded-t-lg"
-          />
+      variants={cardVariants}
+      whileHover="hover"
+      className="h-full"
+    >
+      <Card className="h-full flex flex-col  overflow-hidden border-transparent bg-gradient-to-br from-white/10 to-transparent backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:shadow-blue-300/20">
+        <CardHeader className="p-0 relative overflow-hidden">
+          <motion.div
+            ref={imageRef}
+            className="relative overflow-hidden"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="relative h-48 overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            </div>
+          </motion.div>
         </CardHeader>
-        <CardContent>
-          <CardTitle className="mb-2">{project.title}</CardTitle>
-          <p className="text-muted-foreground mb-4">{project.description}</p>
-          <div className="flex flex-wrap gap-2 mb-4">
+        
+        <CardContent className="flex-grow p-6">
+          <CardTitle className="mb-3 text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+            {project.title}
+          </CardTitle>
+          
+          <motion.div
+            variants={techVariants}
+            className="flex flex-wrap gap-2 mb-4"
+          >
             {project.tech.map((tech) => (
-              <span
+              <motion.span
                 key={tech}
-                className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                variants={itemVariants}
+                className="px-3 py-1 bg-primary/10 text-blue-200 rounded-full text-xs font-medium backdrop-blur-sm"
+              >
                 {tech}
-              </span>
+              </motion.span>
             ))}
-          </div>
+          </motion.div>
+          
+          <p className="text-muted-foreground line-clamp-3 mb-4">
+            {project.description}
+          </p>
         </CardContent>
-        <CardFooter className="flex gap-4">
-          <Button variant="outline" size="sm" asChild>
+        
+        <CardFooter className="p-6 pt-0 flex justify-between">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            asChild
+            className="bg-transparent backdrop-blur-sm border-white/20 hover:bg-white/10 transition-colors"
+          >
             <a href={project.github} target="_blank" rel="noopener noreferrer">
               <Github className="mr-2 h-4 w-4" />
               Code
@@ -187,49 +267,59 @@ function ProjectCard({ project }: { project: Project }) {
           </Button>
 
           {project.demo ? (
-            <Button size="sm" asChild>
+            <Button 
+              size="sm" 
+              asChild
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transition-all"
+            >
               <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="mr-2 h-4 w-4" />
-                Demo
+                Live Demo
+                <ExternalLink className="ml-2 h-4 w-4" />
               </a>
             </Button>
           ) : (
-            <>
-              <Button size="sm" onClick={() => setIsDialogOpen(true)}>
-                <ExternalLink className="mr-2 h-4 w-4" />
-                Demo
-              </Button>
-
-              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle className="flex items-center gap-2">
-                      <span>🚧 Project Ongoing</span>
-                    </DialogTitle>
-                    <DialogDescription>
-                      This project is currently in development. You can view the
-                      code on GitHub!
-                    </DialogDescription>
-                  </DialogHeader>
-
-                  <div className="flex gap-4 mt-4">
-                    <Button asChild>
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => setIsDialogOpen(false)}>
-                        <Github className="mr-2 h-4 w-4" />
-                        View Code
-                      </a>
-                    </Button>
-                    <DialogClose asChild>
-                      <Button variant="outline">Close</Button>
-                    </DialogClose>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button 
+                  size="sm"
+                  className="bg-gradient-to-r from-blue-600/50 to-purple-600/75 hover:from-blue-700 hover:to-purple-700 text-white transition-all"
+                >
+                  Live Demo
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </Button>
+              </DialogTrigger>
+              
+              <DialogContent className="max-w-md rounded-lg">
+                <DialogHeader>
+                  <div className="bg-yellow-500/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4 mx-auto">
+                    <span className="text-2xl">🚧</span>
                   </div>
-                </DialogContent>
-              </Dialog>
-            </>
+                  <DialogTitle className="text-xl text-center">Project Ongoing</DialogTitle>
+                  <DialogDescription className="pt-2 text-base text-center">
+                    This project is currently in development. You can view the
+                    code on GitHub!
+                  </DialogDescription>
+                </DialogHeader>
+
+                <div className="flex gap-3 mt-6">
+                  <Button asChild className="flex-1">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github className="mr-2 h-4 w-4" />
+                      View Code
+                    </a>
+                  </Button>
+                  <DialogClose asChild>
+                    <Button variant="outline" className="flex-1">
+                      Close
+                    </Button>
+                  </DialogClose>
+                </div>
+              </DialogContent>
+            </Dialog>
           )}
         </CardFooter>
       </Card>
@@ -239,21 +329,35 @@ function ProjectCard({ project }: { project: Project }) {
 
 export function Projects() {
   return (
-    <section id="projects" className="py-10 lg:px-8">
+    <section id="projects" className="py-20 lg:px-8 relative">
+      <div className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden -z-10">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
+      </div>
+      
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          viewport={{ once: true }}>
-          <h2 className="text-3xl font-bold pb-16 text-center">Projects</h2>
-
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-14">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} project={project} />
-            ))}
-          </div>
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <motion.h2 
+            className="text-4xl md:text-5xl font-bold  "
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+           Projects
+          </motion.h2>
         </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-8">
+          {projects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
+        </div>
       </div>
     </section>
   );
