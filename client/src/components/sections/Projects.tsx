@@ -16,8 +16,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
-import { useState, useRef } from "react";
+import { ExternalLink, Github, Search } from "lucide-react";
+import { useState, useRef, useEffect, useMemo } from "react";
 
 const projects = [
   {
@@ -25,7 +25,7 @@ const projects = [
     description:
       "This project, BHConnect, is a video calling application built using modern web technologies. The application provides features for scheduling and managing video calls, including upcoming, ended, and recorded calls.",
     image: "assets/BHC.png",
-    tech: ["Node.js", "TypeScript", " Tailwind CSS", "Clerk", "Stream"],
+    tech: ["Next.js", "TypeScript", " Tailwind CSS", "Clerk", "Stream"],
     github: "https://github.com/BHSajuu/BHConnect.git",
     demo: "https://bh-connect-vqwv.vercel.app/",
   },
@@ -74,6 +74,7 @@ const projects = [
     tech: [
       "React",
       "Sandpack",
+      "JavaScript",
       " Tailwind CSS",
       "XTerm.js",
       " Google Gemini API",
@@ -89,6 +90,7 @@ const projects = [
     tech: [
       "React", 
       " Tailwind CSS",
+      "TypeScript",
     ],
     github: "https://github.com/BHSajuu/Advanced-Placement-Preparation-Tracker.git",
     demo: "https://advanced-placement-preparation-trac.vercel.app/",
@@ -118,7 +120,7 @@ const projects = [
     description:
       "A simple Next.js application that transforms text prompts into images using AI. This project leverages modern technologies such as Next.js, Tailwind CSS, and React to deliver a seamless, interactive experience.",
     image: "assets/Text.png",
-    tech: ["Next.js", " Tailwind CSS", "FLUX.1-dev model ", "Lucide-react"],
+    tech: ["Next.js", " Tailwind CSS","TypeScript", "FLUX.1-dev model ", "Lucide-react"],
     github: "https://github.com/BHSajuu/Text-to-image-.git",
     demo: "https://text-to-image-sooty.vercel.app/",
   },
@@ -145,16 +147,6 @@ const cardVariants = {
       type: "spring",
       bounce: 0.4,
       duration: 0.8,
-    },
-  },
-};
-
-const hoverVariants = {
-  hover: {
-    y: -10,
-    transition: {
-      duration: 0.3,
-      ease: "easeOut",
     },
   },
 };
@@ -210,7 +202,7 @@ function ProjectCard({ project }: { project: Project }) {
       whileHover="hover"
       className="h-full"
     >
-      <Card className="h-full flex flex-col  overflow-hidden border-transparent bg-gradient-to-br from-white/10 to-transparent backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:shadow-blue-300/20">
+      <Card className="h-full flex flex-col overflow-hidden border-transparent bg-gradient-to-br from-white/10 to-transparent backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:shadow-blue-300/20">
         <CardHeader className="p-0 relative overflow-hidden">
           <motion.div
             ref={imageRef}
@@ -222,7 +214,7 @@ function ProjectCard({ project }: { project: Project }) {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
               />
             </div>
           </motion.div>
@@ -327,9 +319,67 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
+// Extract all unique tech stacks
+const allTechs = projects.reduce((acc, project) => {
+  project.tech.forEach(tech => {
+    const trimmedTech = tech.trim();
+    if (!acc.includes(trimmedTech)) {
+      acc.push(trimmedTech);
+    }
+  });
+  return acc;
+}, [] as string[]);
+
+// Sort by frequency for better UX
+const techFrequency: Record<string, number> = {};
+projects.forEach(project => {
+  project.tech.forEach(tech => {
+    const trimmedTech = tech.trim();
+    techFrequency[trimmedTech] = (techFrequency[trimmedTech] || 0) + 1;
+  });
+});
+
+const popularTechs = ["Next.js", "React", "Node.js","TypeScript","JavaScript"] as string[];
+
 export function Projects() {
+  const [selectedTech, setSelectedTech] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSticky, setIsSticky] = useState(false);
+  
+  // Combine search and filter
+  const filteredProjects = useMemo(() => {
+    return projects.filter(project => {
+      const matchesTech = selectedTech 
+        ? project.tech.some(tech => tech.trim().toLowerCase() === selectedTech.toLowerCase()) 
+        : true;
+      
+      const matchesSearch = searchQuery 
+        ? project.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+          project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          project.tech.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()))
+        : true;
+      
+      return matchesTech && matchesSearch;
+    });
+  }, [selectedTech, searchQuery]);
+
+  // Handle scroll for sticky navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 50);
+    };
+    
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const clearFilters = () => {
+    setSelectedTech(null);
+    setSearchQuery("");
+  };
+
   return (
-    <section id="projects" className="py-20 lg:px-8 relative">
+    <section id="projects" className="pt-10 pb-16 lg:px-8 relative">
       <div className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden -z-10">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
@@ -341,23 +391,115 @@ export function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold  "
+            className="text-4xl md:text-5xl font-bold "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-           Projects
+            Projects
           </motion.h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-8">
-          {projects.map((project) => (
-            <ProjectCard key={project.title} project={project} />
-          ))}
-        </div>
+        {/* Awesome Filter Navbar */}
+        <motion.div 
+          className={`mb-12 transition-all duration-300 ${isSticky ? "sticky top-4 z-10 bg-gray-400/10 backdrop-blur-lg py-4 rounded-xl shadow-lg border border-white/10" : ""}`}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          <div className="px-5 flex flex-col md:flex-row gap-4 items-center justify-self-start lg:gap-32">
+            {/* Search Bar */}
+            <div className="relative w-full md:w-64">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Search projects..."
+                className="w-full pl-10 pr-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/20 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all duration-300"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {searchQuery && (
+                <button 
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-white transition-colors"
+                >
+                  ×
+                </button>
+              )}
+            </div>
+
+            {/* Tech Filter Chips */}
+            <div className="flex flex-wrap justify-center gap-2">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={clearFilters}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                  !selectedTech && !searchQuery
+                    ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/30"
+                    : "bg-gray-900/90 backdrop-blur-sm border border-white/20 hover:bg-white/10"
+                }`}
+              >
+                All Projects
+              </motion.button>
+              
+              {popularTechs.map((tech) => (
+                <motion.button
+                  key={tech}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setSelectedTech(selectedTech === tech ? null : tech)}
+                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                    selectedTech === tech
+                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/30"
+                      : "bg-gray-900/90 backdrop-blur-sm border border-white/20 hover:bg-white/10"
+                  }`}
+                >
+                  {tech}
+                </motion.button>
+              ))}
+            </div>
+          </div>
+          
+          
+        </motion.div>
+
+        {/* Projects Grid */}
+        {filteredProjects.length > 0 ? (
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {filteredProjects.map((project) => (
+              <ProjectCard key={project.title} project={project} />
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div 
+            className="text-center py-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="text-5xl mb-4">🔍</div>
+            <h3 className="text-2xl font-bold mb-2">No projects found</h3>
+            <p className="text-muted-foreground max-w-md mx-auto">
+              Try adjusting your search or filter criteria. No projects match "{searchQuery}"{selectedTech ? ` in the ${selectedTech} category` : ''}.
+            </p>
+            <Button 
+              onClick={clearFilters}
+              variant="outline"
+              className="mt-6"
+            >
+              Clear filters
+            </Button>
+          </motion.div>
+        )}
       </div>
     </section>
   );
