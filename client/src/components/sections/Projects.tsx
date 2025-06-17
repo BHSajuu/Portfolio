@@ -50,7 +50,7 @@ const projects = [
   {
     title: "IEEE Society Website",
     description:
-      "This is the IEEE Society Website. It is built using modern tools like React, Nodejs, and Tailwind CSS. It uses Framer Motion for smooth effects and connects to a MongoDB database using Expressjs and Mongoose. The website is simple and fun to use. You can check the code on GitHub, but there is no demo available yet.",
+      "This is the IEEE Society Website. It is built using modern tools like React, Nodejs, and Tailwind CSS. You can check the code on GitHub, but there is no demo available yet.",
     image: "assets/IEEE.png",
     tech: [
       "React",
@@ -83,7 +83,7 @@ const projects = [
   {
     title: "Advanced Placement Preparation Tracker",
     description:
-      "This is a smart and personalized preparation tracker for MAANG aspirants, built using modern tech stacks. It helps users set 60-day goals, track daily progress, and visualize skill-based completion for cracking top tech company interviews.",
+      "This is a smart and personalized preparation tracker for MAANG aspirants.It helps users set 60-day goals, track daily progress, and visualize skill-based completion.",
     image: "assets/Tracker.png",
     tech: [
       "React", 
@@ -239,16 +239,16 @@ function ProjectCard({ project }: { project: Project }) {
 
 export function Projects() {
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="py-10 lg:px-8">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}>
-          <h2 className="text-3xl font-bold mb-8 text-center">Projects</h2>
+          <h2 className="text-3xl font-bold pb-16 text-center">Projects</h2>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-14">
             {projects.map((project) => (
               <ProjectCard key={project.title} project={project} />
             ))}

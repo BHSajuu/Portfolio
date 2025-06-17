@@ -56,7 +56,7 @@ const skillCategories = [
 
 export function Skills() {
   return (
-    <section id="skills" className="pt-10 bg-muted/20">
+    <section id="skills" className="pt-10 bg-muted/20 lg:px-6 pb-7">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -70,7 +70,7 @@ export function Skills() {
           
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-12">
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
@@ -110,7 +110,7 @@ export function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-6 mt-12"
+          className="grid md:grid-cols-3 gap-6 lg:gap-12 mt-12"
         >
             <Card className="p-6 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 ease-in-out">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
