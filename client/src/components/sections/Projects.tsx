@@ -157,7 +157,7 @@ function ProjectCard({ project }: { project: Project }) {
       whileInView="onscreen"
       viewport={{ once: true, amount: 0.5 }}
       variants={cardVariants}>
-      <Card>
+      <Card className="hover:scale-105  hover:shadow-xl hover:shadow-blue-300/30 transition-all hover:border-transparent duration-300 ease-in-out">
         <CardHeader>
           <img
             src={project.image}
