@@ -79,7 +79,7 @@ export function Skills() {
               transition={{ duration: 0.3, delay: index * 0.01 }}
               viewport={{ once: true }}
               whileHover={{ y: -10, scale: 1.05 }}
-              className="h-full shadow-lg hover:shadow-xl hover:shadow-blue-300/30 transition-shadow duration-300"
+              className="h-full shadow-lg hover:cursor-pointer hover:shadow-xl hover:shadow-blue-300/30 transition-shadow duration-300"
             >
               <Card className="h-full overflow-hidden bg-gradient-to-br border-0">
                 <div className={`h-2 w-full bg-gradient-to-r ${category.color}`}></div>
@@ -112,7 +112,7 @@ export function Skills() {
           viewport={{ once: true }}
           className="grid md:grid-cols-3 gap-6 lg:gap-12 mt-12"
         >
-            <Card className="p-6 flex flex-col items-center text-center hover:scale-105  hover:shadow-xl hover:shadow-blue-300/30 transition-all hover:border-transparent duration-300 ease-in-out">
+            <Card className="p-6 flex flex-col items-center text-center hover:cursor-pointer hover:scale-105  hover:shadow-xl hover:shadow-blue-300/30 transition-all hover:border-transparent duration-300 ease-in-out">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Code className="w-8 h-8 text-primary" />
             </div>
@@ -122,7 +122,7 @@ export function Skills() {
             </p>
           </Card>
 
-          <Card className="p-6 flex flex-col items-center text-center hover:scale-105  hover:shadow-xl hover:shadow-blue-300/30 transition-all hover:border-transparent duration-300 ease-in-out">
+          <Card className="p-6 flex flex-col items-center text-center hover:cursor-pointer hover:scale-105  hover:shadow-xl hover:shadow-blue-300/30 transition-all hover:border-transparent duration-300 ease-in-out">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Globe className="w-8 h-8 text-primary" />
             </div>
@@ -132,7 +132,7 @@ export function Skills() {
             </p>
           </Card>
 
-          <Card className="p-6 flex flex-col items-center text-center hover:scale-105  hover:shadow-xl hover:shadow-blue-300/30 transition-all hover:border-transparent duration-300 ease-in-out">
+          <Card className="p-6 flex flex-col items-center text-center hover:cursor-pointer hover:scale-105  hover:shadow-xl hover:shadow-blue-300/30 transition-all hover:border-transparent duration-300 ease-in-out">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Database className="w-8 h-8 text-primary" />
             </div>

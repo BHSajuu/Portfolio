@@ -24,7 +24,7 @@ export function About() {
             transition={{ duration: 0.3 }}
             viewport={{ once: true }}
             whileHover={{ y: -10, scale: 1.01 }}
-            className="h-full shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="h-full shadow-lg hover:cursor-pointer hover:shadow-xl hover:shadow-blue-300/30 transition-shadow duration-300"
           >
             <Card className=" h-full overflow-hidden bg-gradient-to-br border-0">
               <div className="h-6 w-full bg-gradient-to-r from-blue-500/20 to-blue-600/5"></div>
@@ -43,7 +43,7 @@ export function About() {
             transition={{ duration: 0.3 }}
             viewport={{ once: true }}
             whileHover={{ y: -10, scale: 1.01 }}
-            className="h-full shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="h-full shadow-lg hover:cursor-pointer hover:shadow-xl hover:shadow-blue-300/30 transition-shadow duration-300"
           >
             <Card className="h-full overflow-hidden bg-gradient-to-br border-0">
               <div className="h-6 w-full bg-gradient-to-r from-green-500/20 to-green-600/5"></div>
