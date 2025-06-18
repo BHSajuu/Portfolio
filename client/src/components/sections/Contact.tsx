@@ -88,7 +88,7 @@ export function Contact() {
           viewport={{ once: true }}>
           <h2 className="text-3xl font-bold mb-8 text-center">Contact Me</h2>
 
-          <Card className="max-w-md mx-auto hover:scale-110 hover:mt-16 hover:border-transparent hover:shadow-xl hover:shadow-blue-300/30 transition-all duration-300">
+          <Card className="max-w-md mx-auto hover:scale-110 lg:hover:scale-125 hover:mt-24 hover:border-transparent hover:shadow-xl hover:shadow-blue-300/30 transition-all duration-300">
             <CardHeader>
               <CardTitle>Get in Touch</CardTitle>
             </CardHeader>
