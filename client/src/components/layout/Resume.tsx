@@ -289,7 +289,7 @@ export default function ResumePage() {
                 </motion.a>
 
                 <motion.a
-                  href="https://drive.google.com/file/d/1Qj9wLsWNWENKKwN0zOmwaSlhFoYCUFF3/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1h5tK4f4rD4K2EZp469fEmwzbyZi6FoXu/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
