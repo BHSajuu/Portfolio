@@ -21,6 +21,15 @@ import { useState, useRef, useEffect, useMemo } from "react";
 
 const projects = [
   {
+    title: "AI Fitness Trainer",
+    description:
+      "Smart AI Assistant: Engage in conversation with an AI that asks about your fitness goals, physical condition, and preferences. Personalized Workout Plans and Diet Recommendations.",
+    image: "assets/fitness.png",
+    tech: ["Next.js", "React", "TypeScript", " Tailwind CSS","Shadcn UI" , "Clerk","Vapi", "LLM(Gemini)"],
+    github: "https://github.com/BHSajuu/ai-fitness-trainer.git",
+    demo: "https://ai-fitness-trainer-dusky.vercel.app/",
+  },
+  {
     title: "BHConnect - Video Calling application",
     description:
       "This project, BHConnect, is a video calling application built using modern web technologies. The application provides features for scheduling and managing video calls, including upcoming, ended, and recorded calls.",
