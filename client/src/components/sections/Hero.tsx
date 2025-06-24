@@ -4,9 +4,8 @@ import { Code2, Cpu, Terminal } from "lucide-react";
 import { useEffect } from "react";
 import { SiGithub, SiLeetcode, SiLinkedin } from "react-icons/si";
 import { TypewriterSubheading } from "../layout/TypewriterSubheading"
-import { Dialog, DialogContent } from "../ui/dialog";
-import ResumePage from "../layout/Resume";
-import { useState } from "react";
+
+
 
 const typewriterVariants = {
   hidden: { width: 0 },
@@ -15,7 +14,7 @@ const typewriterVariants = {
     transition: {
       duration: 1,
       ease: "easeOut",
-      delay: 0.5,
+      delay: 0.4,
     },
   },
 };
@@ -48,8 +47,6 @@ const playWelcomeSound = () => {
 };
 
 export function Hero() {
-
-  const [showResume, setShowResume] = useState(false);
 
   useEffect(() => {
     const handleUserInteraction = () => {
@@ -124,7 +121,7 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.8,
-                delay: 1.5,
+                delay: 0.8,
                 type: "spring",
                 stiffness: 100,
               }}
@@ -132,14 +129,14 @@ export function Hero() {
               <motion.div
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
-                transition={{ duration: 0.8, delay: 1.5 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
                 className="text-xl md:text-3xl lg:text-4xl font-medium mb-4 md:mb-8">
                 Boktiar Hussain Talukdar
               </motion.div>
               <motion.div
                 initial={{ x: "-100%" }}
                 animate={{ x: "100%" }}
-                transition={{ duration: 1, delay: 1.5 }}
+                transition={{ duration: 1, delay: 1.0 }}
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent"
               />
             </motion.h1>
@@ -169,7 +166,7 @@ export function Hero() {
                 },
                 opacity: {
                   duration: 0.5,
-                  delay: 2.3,
+                  delay: 0.8,
                 },
               }}
               className="text-2xl text-purple-300">
@@ -180,7 +177,7 @@ export function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 3, duration: 0.5 }}
+              transition={{ delay: 1.2, duration: 0.5 }}
               className="text-lg md:text-xl text-muted-foreground max-w-lg">
               Combining analytical rigor from DSA with modern full-stack
               development to create impactful digital experiences
@@ -191,7 +188,7 @@ export function Hero() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 3.5, duration: 0.5 }}
+                transition={{ delay: 1.4, duration: 0.5 }}
                 className="flex flex-wrap gap-4">
                 <Button size="lg" className="gap-2 text-lg" asChild>
                   <a
@@ -206,9 +203,14 @@ export function Hero() {
                   variant="outline"
                   size="lg"
                   className="gap-2 text-lg"
-                  onClick={() => setShowResume(true)}
                 >
-                  Resume
+                  <a
+                    href="https://drive.google.com/file/d/1AMAH-Jj7nwDeArgCCTfCEdua91-QnsI1/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Resume
+                  </a>
                 </Button>
 
                 <Button
@@ -227,7 +229,7 @@ export function Hero() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 4, duration: 0.5 }}
+                transition={{ delay: 2.2, duration: 0.5 }}
                 className="flex gap-4 mt-4">
                 <a
                   href="https://www.linkedin.com/in/boktiar-hussain-58766a254/"
@@ -328,9 +330,15 @@ export function Hero() {
                   variant="outline"
                   size="lg"
                   className="gap-2 text-lg"
-                  onClick={() => setShowResume(true)}
+                
                 >
-                  Resume
+                 <a
+                    href="https://drive.google.com/file/d/1AMAH-Jj7nwDeArgCCTfCEdua91-QnsI1/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Resume
+                  </a>
                 </Button>
               <Button
                 size="lg"
@@ -376,13 +384,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-      {/* Resume Dialog */}
-      <Dialog open={showResume} onOpenChange={setShowResume}>
-        <DialogContent className="max-w-5xl p-0 overflow-y-auto max-h-[90vh]">
-          <ResumePage />
-        </DialogContent>
-      </Dialog>
-
     </section>
   );
 }

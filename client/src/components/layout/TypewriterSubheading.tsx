@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const PHRASES = ["I'm a Full Stack Developer", "Currently an SDE Intern @Bluestock", "Solved 350+ DSA Problems on LeetCode", "Learning Data Science and AI"];
+const PHRASES = ["I'm a Full Stack Developer", "Ex-SDE Intern @Bluestock", "Solved 400+ DSA Problems on LeetCode", "Learning Data Science and AI"];
 const TYPING_SPEED = 55;
 const DELETING_SPEED = 32;
 const HOLD_TIME = 1250;
