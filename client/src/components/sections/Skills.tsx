@@ -6,32 +6,39 @@ import { SiGit, SiNodedotjs, SiReact } from "react-icons/si";
 
 const skillCategories = [
   {
-    title: "Frontend",
+    title: "Frontend / Libraries / SDKs",
     skills: [
       "React",
       "Next.js",
       "JavaScript",
       "TypeScript",
       "HTML/CSS",
-      "Tailwind CSS",
+      "Tailwind",
       "Framer Motion",
-      "Three.js",
-      "Clerk",
+      "DaisyUI",
       "Material UI",
       "shadcn/ui",
+      "Clerk",
+      "Stream",
+      "Vapi",
+      "LLM(Gemini)",
+      "Sandpack",
+      "XTerm.js",
     ],
     icon: <SiReact className="w-8 h-8 text-blue-500" />,
     color: "from-blue-500/20 to-blue-600/5",
   },
   {
-    title: "Backend",
+    title: "Backend and Database",
     skills: [
       "Node.js",
       "Express",
       "SQL",
       "RESTful APIs",
-      "MongoDB",
+      "Socket.IO",
       "Mongoose",
+      "Convex",
+      "MongoDB Atlas",
     ],
     icon: <SiNodedotjs className="w-8 h-8 text-green-500" />,
     color: "from-green-500/20 to-green-600/5",
@@ -42,6 +49,7 @@ const skillCategories = [
       "Java",
       "Python",
       "DBMS",
+      "Postman",
       "Git",
       "VS Code",
       "Data Structures & Algorithms",
@@ -67,7 +75,7 @@ export function Skills() {
         >
           <h2 className="text-3xl font-bold ">Skills</h2>
           <div className="w-20 h-1 bg-primary mx-auto rounded-full "></div>
-          
+
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6 lg:gap-12">
@@ -90,8 +98,8 @@ export function Skills() {
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {category.skills.map((skill) => (
-                      <Badge 
-                        key={skill} 
+                      <Badge
+                        key={skill}
                         variant="secondary"
                         className="animate-in fade-in-10 transition-all duration-300 hover:bg-primary/20"
                       >
@@ -112,7 +120,7 @@ export function Skills() {
           viewport={{ once: true }}
           className="grid md:grid-cols-3 gap-6 lg:gap-12 mt-12"
         >
-            <Card className="p-6 flex flex-col items-center text-center hover:cursor-pointer hover:scale-105  hover:shadow-xl hover:shadow-blue-300/30 transition-all hover:border-transparent duration-300 ease-in-out">
+          <Card className="p-6 flex flex-col items-center text-center hover:cursor-pointer hover:scale-105  hover:shadow-xl hover:shadow-blue-300/30 transition-all hover:border-transparent duration-300 ease-in-out">
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Code className="w-8 h-8 text-primary" />
             </div>
