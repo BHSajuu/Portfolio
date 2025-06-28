@@ -205,7 +205,7 @@ export function Hero() {
                   className="gap-2 text-lg"
                 >
                   <a
-                    href="https://drive.google.com/file/d/1AMAH-Jj7nwDeArgCCTfCEdua91-QnsI1/view?usp=sharing"
+                    href="https://drive.google.com/file/d/1qyxH4yRszsx-r3v2S5ko4jtKnECLkaz0/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

@@ -21,13 +21,13 @@ import { useState, useRef, useEffect, useMemo } from "react";
 
 const projects = [
   {
-    title: "AI Fitness Trainer",
+    title: "FitFlow - AI Fitness Trainer",
     description:
       "Smart AI Assistant: Engage in conversation with an AI that asks about your fitness goals, physical condition, and preferences. Personalized Workout Plans and Diet Recommendations.",
     image: "assets/fitness.png",
     tech: ["Next.js", "TypeScript", "Tailwind", "Shadcn UI", "Clerk", "Vapi", "LLM(Gemini)"],
-    github: "https://github.com/BHSajuu/ai-fitness-trainer.git",
-    demo: "https://ai-fitness-trainer-dusky.vercel.app/",
+    github: "https://github.com/BHSajuu/Fitness-Trainer-AI.git",
+    demo: "https://fitness-trainer-ai.vercel.app/",
   },
   {
     title: "BHConnect - Video Calling application",
