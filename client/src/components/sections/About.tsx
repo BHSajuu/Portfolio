@@ -31,7 +31,7 @@ export function About() {
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-4">Background</h3>
                 <p className="text-muted-foreground">
-                  As a third-year Mechanical Engineering student, I've developed a strong foundation in problem-solving and analytical thinking. My passion for technology led me to explore software development, where I've found my true calling.
+                  As a final-year Mechanical Engineering student, I've developed a strong foundation in problem-solving and analytical thinking. My passion for technology led me to explore software development, where I've found my true calling.
                 </p>
               </CardContent>
             </Card>
