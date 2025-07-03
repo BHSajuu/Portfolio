@@ -29,16 +29,7 @@ const projects = [
     github: "https://github.com/BHSajuu/Fitness-Trainer-AI.git",
     demo: "https://fitness-trainer-ai.vercel.app/",
   },
-  {
-    title: "BHConnect - Video Calling application",
-    description:
-      "This project, BHConnect, is a video calling application built using modern web technologies. The application provides features for scheduling and managing video calls, including upcoming, ended, and recorded calls.",
-    image: "assets/BHC.png",
-    tech: ["Next.js", "TypeScript", "Tailwind", "Clerk", "Stream"],
-    github: "https://github.com/BHSajuu/BHConnect.git",
-    demo: "https://bh-connect-vqwv.vercel.app/",
-  },
-  {
+    {
     title: "Chatty",
     description:
       "Chatty is a MERN  based real-time chat application. It allows users to communicate seamlessly with features like user authentication, real-time messaging, and more.",
@@ -53,10 +44,21 @@ const projects = [
       "Zustand",
       "MongoDB",
       "Socket.IO",
+      "Stream SDk"
     ],
     github: "https://github.com/BHSajuu/chatty.git",
     demo: "https://chatty-notb.onrender.com/",
   },
+  {
+    title: "BHConnect - Video Calling application",
+    description:
+      "This project, BHConnect, is a video calling application built using modern web technologies. The application provides features for scheduling and managing video calls, including upcoming, ended, and recorded calls.",
+    image: "assets/BHC.png",
+    tech: ["Next.js", "TypeScript", "Tailwind", "Clerk", "Stream SDK"],
+    github: "https://github.com/BHSajuu/BHConnect.git",
+    demo: "https://bh-connect-vqwv.vercel.app/",
+  },
+
   {
     title: "IEEE Society Website",
     description:
