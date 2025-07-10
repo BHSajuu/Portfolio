@@ -21,11 +21,19 @@ import { useState, useRef, useEffect, useMemo } from "react";
 
 const projects = [
   {
+    title: "CodeNexta",
+    description:"CodeNexta is a powerful SaaS-based online code editor. It supports 10+ languages, offers VSCode-like themes, smart output handling, free & pro plans, webhook integration, profile tracking, code sharing, and a dashboard with stats. Perfect for developers to collaborate, share, and execute code in real-time.",
+    image: "assets/codeNexta.png",
+    tech: ["Next.js", "TypeScript", "Tailwind", "Framer-motion", "Monaco-editor", "Zustand", "Convex", "Clerk", "Lemon-Squeezy"],
+    github: "https://github.com/BHSajuu/SaaS-Code-Editor.git",
+    demo: "https://codenexta.vercel.app/",
+  },
+  {
     title: "FitFlow - AI Fitness Trainer",
     description:
       "Smart AI Assistant: Engage in conversation with an AI that asks about your fitness goals, physical condition, and preferences. Personalized Workout Plans and Diet Recommendations.",
     image: "assets/fitness.png",
-    tech: ["Next.js", "TypeScript", "Tailwind", "Shadcn UI", "Clerk", "Vapi", "LLM(Gemini)"],
+    tech: ["Next.js", "TypeScript", "Tailwind", "Shadcn UI", "Clerk", "Convex", "Vapi", "LLM(Gemini)"],
     github: "https://github.com/BHSajuu/Fitness-Trainer-AI.git",
     demo: "https://fitness-trainer-ai.vercel.app/",
   },
@@ -47,7 +55,7 @@ const projects = [
       "Stream SDk"
     ],
     github: "https://github.com/BHSajuu/chatty.git",
-    demo: "https://chatty-notb.onrender.com/",
+    demo: "",
   },
   {
     title: "BHConnect - Video Calling application",
