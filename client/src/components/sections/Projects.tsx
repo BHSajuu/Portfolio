@@ -55,7 +55,7 @@ const projects = [
       "Stream SDk"
     ],
     github: "https://github.com/BHSajuu/chatty.git",
-    demo: "",
+    demo: "https://chatty-hu1i.onrender.com",
   },
   {
     title: "BHConnect - Video Calling application",
