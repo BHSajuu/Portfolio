@@ -22,9 +22,9 @@ import { useState, useRef, useEffect, useMemo } from "react";
 const projects = [
   {
     title: "CodeNexta",
-    description:"CodeNexta is a powerful SaaS-based online code editor. It supports 10+ languages, offers VSCode-like themes, smart output handling, free & pro plans, webhook integration, profile tracking, code sharing, and a dashboard with stats. Perfect for developers to collaborate, share, and execute code in real-time.",
+    description:"CodeNexta is a powerful SaaS-based online code editor. It supports 10+ languages, offers VSCode-like themes, smart output handling, smart error fixing using gemini api, free & pro plans, webhook integration, profile tracking, code sharing, and a dashboard with stats. Perfect for developers to collaborate, share, and execute code in real-time.",
     image: "assets/codeNexta.png",
-    tech: ["Next.js", "TypeScript", "Tailwind", "Framer-motion", "Monaco-editor", "Zustand", "Convex", "Clerk", "Lemon-Squeezy"],
+    tech: ["Next.js", "TypeScript", "Tailwind", "Framer-motion", "Monaco-editor", "Gemini API", "Zustand", "Convex", "Clerk", "Lemon-Squeezy"],
     github: "https://github.com/BHSajuu/SaaS-Code-Editor.git",
     demo: "https://codenexta.vercel.app/",
   },
