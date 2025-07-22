@@ -10,8 +10,16 @@ import {
 } from "@/components/ui/card";
 import { Button } from "../ui/button";
 import { ExternalLink, Github } from "lucide-react";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTrigger } from "../ui/dialog";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTrigger,
+} from "../ui/dialog";
 import { DialogTitle } from "@radix-ui/react-dialog";
+
 // Add this helper outside the component
 
 const cardVariants = {
@@ -54,7 +62,6 @@ interface Project {
   github: string;
   demo: string;
 }
-
 
 function useClickOutside(ref: any, handler: () => void) {
   useEffect(() => {
@@ -225,25 +232,28 @@ function ProjectCard({ project }: { project: Project }) {
           )}
         </CardFooter>
       </Card>
- 
 
-      {/* Full description pop-out */}
+      {/* Full description pop-out with smooth scale-up animation */}
       {showFullDesc &&
         createPortal(
-          <div
+          <motion.div
             ref={descRef}
-            className="absolute text-justify mx-3 hyphens-auto z-50 bg-zinc-900 text-white p-4 rounded-3xl border border-white/10 w-96 hover:cursor-pointer hover:shadow-xl hover:shadow-blue-300/30 transition-all duration-300"
+            className="absolute text-justify mx-3 hyphens-auto z-50 bg-zinc-900 text-white p-4 rounded-3xl border border-white/10 w-96 hover:cursor-pointer hover:shadow-xl hover:shadow-blue-300/30"
             style={{
               top: coords.y + 30,
               left: coords.x,
-              transform: "translateY(-10px) scale(1.05)",
             }}
+            initial={{ scale: 0.2, opacity: 0.5 }}
+            animate={{ scale: 1.25, opacity: 1 }}
+            transition={{ type: "spring", duration: 1.2, bounce: 0.3 }}
+            onClick={() => setShowFullDesc(false)}
           >
             <p className="text-sm leading-relaxed">{project.description}</p>
-          </div>,
+          </motion.div>,
           document.body
         )}
     </motion.div>
   );
 }
+
 export default ProjectCard;
