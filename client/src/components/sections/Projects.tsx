@@ -42,6 +42,15 @@ const projects = [
     github: "https://github.com/BHSajuu/chatty.git",
     demo: "https://chatty-hu1i.onrender.com",
   },
+    {
+    title: "Placement-Alarm",
+    description:
+      "A platform to help students track and manage their placement process effectively.",
+    image: "assets/placement.png",
+    tech: ["Next.js", "TypeScript", "Tailwind", "Shadcn UI", "Clerk", "Convex", "Twilio", "Nodemailer"],
+    github: "https://github.com/BHSajuu/Placement-Alarm",
+    demo: "https://placement-alarm.vercel.app/",
+  },
   {
     title: "BHConnect - Video Calling application",
     description:
