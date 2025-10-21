@@ -24,12 +24,11 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "client", "src"),
+      "@": path.resolve(__dirname, "./src/"),
     },
   },
-  root: path.resolve(__dirname, "client"),
   build: {
-    outDir: path.resolve(__dirname, "client", "dist"), // Specify the output directory
+    outDir: path.resolve(__dirname, "./dist"), // Specify the output directory
     emptyOutDir: true, // Ensure the output directory is emptied before building
   },
 });
