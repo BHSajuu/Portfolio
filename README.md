@@ -1,6 +1,8 @@
 # Portfolio Website
 
 ![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=portfolio-boktiars-projects&style=for-the-badge)
+<br>
+![Portfolio](public/assets/portfolio.png)
 
 This is the repository for my personal portfolio website, a place where I showcase my skills, projects, and my journey as a passionate full-stack developer. I've built this website with modern web technologies to create a dynamic, engaging, and seamless user experience.
 
