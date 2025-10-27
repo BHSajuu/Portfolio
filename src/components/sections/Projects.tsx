@@ -43,24 +43,17 @@ const projects = [
     github: "https://github.com/BHSajuu/chatty.git",
     demo: "https://chatty-hu1i.onrender.com",
   },
-    {
-    title: "Note Taking Web Application",
+   
+   {
+    title: "DSA Revision Tracker",
     description:
-      "A modern, full-stack note-taking application built with the MERN stack (MongoDB, Express, React, Node.js) and TypeScript. This application provides a seamless and secure platform for users to create, manage, and edit their notes with a rich, intuitive interface. It features robust user authentication, a dynamic and responsive layout, and an AI-powered assistant to enhance the note-taking experience.",
-    image: "assets/note.png",
-    tech: [
-      "Node.js",
-      "Express",
-      "React",
-      "TypeScript",
-      "Tailwind",
-      "MongoDB",
-      "LLM(Gemini)",
-      "TinyMCE",
-    ],
-    github: "https://github.com/BHSajuu/Note-Taking-web-applications",
-    demo: "https://note-taking-web-applications.vercel.app/",
+      "Master Data Structures & Algorithms with a smart, pattern-based learning platform featuring spaced repetition.",
+    image: "assets/dsa.png",
+    tech: ["Next.js", "Javascript", "Tailwind", "Framer Motion", "Convex", "Nodemailer"],
+    github: "https://github.com/BHSajuu/dsa-revision.git",
+    demo: "https://dsa-revision-bht.vercel.app/",
   },
+
     {
     title: "Placement-Alarm",
     description:
@@ -79,7 +72,24 @@ const projects = [
     github: "https://github.com/BHSajuu/BHConnect.git",
     demo: "https://bh-connect-vqwv.vercel.app/",
   },
-
+    {
+    title: "Note Taking Web Application",
+    description:
+      "A modern, full-stack note-taking application built with the MERN stack (MongoDB, Express, React, Node.js) and TypeScript. This application provides a seamless and secure platform for users to create, manage, and edit their notes with a rich, intuitive interface. It features robust user authentication, a dynamic and responsive layout, and an AI-powered assistant to enhance the note-taking experience.",
+    image: "assets/note.png",
+    tech: [
+      "Node.js",
+      "Express",
+      "React",
+      "TypeScript",
+      "Tailwind",
+      "MongoDB",
+      "LLM(Gemini)",
+      "TinyMCE",
+    ],
+    github: "https://github.com/BHSajuu/Note-Taking-web-applications",
+    demo: "https://note-taking-web-applications.vercel.app/",
+  },
   {
     title: "IEEE Society Website",
     description:
