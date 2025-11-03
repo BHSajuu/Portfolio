@@ -59,7 +59,7 @@ To get a local copy up and running, follow these simple steps.
 The application will be available at `http://localhost:5173`
 
 
-## 📧 Contact
+## 📧 Contact 
 
 Boktiar Hussain Talukdar - [boktiaroff01@gmail.com](mailto:boktiaroff01@gmail.com)
 
