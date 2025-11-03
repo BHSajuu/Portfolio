@@ -32,7 +32,7 @@ This portfolio is built with a modern, full-stack technology stack:
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
      
 
-## 🚀 Getting Started
+## 🚀 Getting Started 
 
 To get a local copy up and running, follow these simple steps.
 
