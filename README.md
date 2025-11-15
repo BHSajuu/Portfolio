@@ -32,34 +32,34 @@ This portfolio is built with a modern, full-stack technology stack:
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
      
 
-## 🚀 Getting Started
+## 🚀 Getting Started 
 
 To get a local copy up and running, follow these simple steps.
 
 ### Prerequisites
 
-* Node.js (v18 or later)
-* npm or yarn
+* Node.js (v18 or later) 
+* npm or yarn 
 
 ### Installation
 
 1.  Clone the repo
     ```sh
-    git clone https://github.com/BHSajuu/Portfolio.git
+    git clone https://github.com/BHSajuu/Portfolio.git 
     ```
 2.  Install NPM packages
     ```sh
     npm install
-    ```
-3.  Start the development server
+    ``` 
+3.  Start the development server 
     ```sh
     npm run dev
-    ```
+    ``` 
 
 The application will be available at `http://localhost:5173`
 
 
-## 📧 Contact
+## 📧 Contact 
 
 Boktiar Hussain Talukdar - [boktiaroff01@gmail.com](mailto:boktiaroff01@gmail.com)
 
