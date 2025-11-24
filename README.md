@@ -1,4 +1,4 @@
-  ![Portfolio](public/assets/portfolio.png)
+![Portfolio](public/assets/portfolio.png)
 
 This is the repository for my personal portfolio website, a place where I showcase my skills, projects, and my journey as a passionate full-stack developer. I've built this website with modern web technologies to create a dynamic, engaging, and seamless user experience.
 
