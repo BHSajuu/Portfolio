@@ -157,34 +157,34 @@ const projects = [
     demo: "https://advanced-placement-preparation-trac.vercel.app/",
   },
   
-  {
-    title: "Simon Game - Web-Based Memory Game",
-    description:
-      "The game challenges players to memorize and repeat sequences of colors and sounds, progressively increasing in difficulty.",
-    image: "assets/Simon.png",
-    tech: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/BHSajuu/Simon-Game.git",
-    demo: "https://bhsajuu.github.io/Simon-Game/",
-  },
-  {
-    title: "Chat Application",
-    description:
-      "A real-time chat application that allows users to communicate via text. It features secure user authentication, data storage, and message synchronization using Firebase.The app is responsive, ensuring a smooth experience across all devices.",
-    image: "assets/ChapApp.png",
-    tech: ["React", "JavaScript", "Firebase", " CSS"],
-    github: "https://github.com/BHSajuu/Chat-Application.git",
-    demo: "https://chat-app-gs-b3dbb.firebaseapp.com/",
-  },
+  // {
+  //   title: "Simon Game - Web-Based Memory Game",
+  //   description:
+  //     "The game challenges players to memorize and repeat sequences of colors and sounds, progressively increasing in difficulty.",
+  //   image: "assets/Simon.png",
+  //   tech: ["HTML", "CSS", "JavaScript"],
+  //   github: "https://github.com/BHSajuu/Simon-Game.git",
+  //   demo: "https://bhsajuu.github.io/Simon-Game/",
+  // },
+  // {
+  //   title: "Chat Application",
+  //   description:
+  //     "A real-time chat application that allows users to communicate via text. It features secure user authentication, data storage, and message synchronization using Firebase.The app is responsive, ensuring a smooth experience across all devices.",
+  //   image: "assets/ChapApp.png",
+  //   tech: ["React", "JavaScript", "Firebase", " CSS"],
+  //   github: "https://github.com/BHSajuu/Chat-Application.git",
+  //   demo: "https://chat-app-gs-b3dbb.firebaseapp.com/",
+  // },
 
-  {
-    title: "Text to Image Generator",
-    description:
-      "A simple Next.js application that transforms text prompts into images using AI. This project leverages modern technologies such as Next.js, Tailwind CSS, and React to deliver a seamless, interactive experience.",
-    image: "assets/Text.png",
-    tech: ["Next.js", "Tailwind","TypeScript", "FLUX.1-dev model ", "Lucide-react"],
-    github: "https://github.com/BHSajuu/Text-to-image-.git",
-    demo: "https://text-to-image-sooty.vercel.app/",
-  },
+  // {
+  //   title: "Text to Image Generator",
+  //   description:
+  //     "A simple Next.js application that transforms text prompts into images using AI. This project leverages modern technologies such as Next.js, Tailwind CSS, and React to deliver a seamless, interactive experience.",
+  //   image: "assets/Text.png",
+  //   tech: ["Next.js", "Tailwind","TypeScript", "FLUX.1-dev model ", "Lucide-react"],
+  //   github: "https://github.com/BHSajuu/Text-to-image-.git",
+  //   demo: "https://text-to-image-sooty.vercel.app/",
+  // },
 ];
 
 
