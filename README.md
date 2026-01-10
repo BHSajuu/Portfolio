@@ -6,7 +6,7 @@ This is the repository for my personal portfolio website, a place where I showca
 
 Check out the live version of my portfolio here: **[portfolio-boktiars-projects.vercel.app](https://portfolio-boktiars-projects.vercel.app/)**
 
-## ✨ Features
+## ✨ Features 
 
 * **Mesmerizing Animations:** An engaging introduction with a typewriter effect and animated visuals.
 * **About Me:** A brief overview of my background and journey into the world of technology.
